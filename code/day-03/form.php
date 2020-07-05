@@ -11,40 +11,40 @@
         if(empty($_POST['user_id']))
         {
             //要么没有提交用户名 或者 用户名为空
-            echo '请输入用户名';
+            $message = '请输入用户名';
         }
         else
         {
             if(empty($_POST['password']))
             {
                 //要么没有提交密码 或者 用户名为空
-                echo '请输入密码';
+                $message = '请输入密码';
             }
             else
             {
                 if(empty($_POST['confirm']))
                 {
                     //要么没有提交密码 或者 用户名为空
-                    echo '请输入确认密码';
+                    $message = '请输入确认密码';
                 }
                 else
                 {
                     if($_POST['password'] != $_POST['confirm'] )
                     {
                         //判断密码是否一致
-                        echo '密码不一致';
+                        $message = '密码不一致';
                     }
                     else
                     {
                         if(!(isset($_POST['agree']) && $_POST['agree'] == 'true'))
                         {
-                            echo '必须同意用户协议';
+                            $message = '必须同意用户协议';
                         }
                         else
                         {
                             if(empty($_POST['funs']))
                             {
-                                echo '请填写兴趣';
+                                $message = '请填写兴趣';
                             }
                             else
                             {
@@ -127,6 +127,12 @@
                 <td><label for = "consult"></label></td>
                 <td><input type = "checkbox" name = "agree" value = "true" id = "consult">同意协议</td>
             </tr>
+            <?php if(isset($message)): ?>
+                <tr>
+                <td></td>
+                <td><?php echo $message; ?></td>
+            </tr>
+            <?php endif ?>
             <tr>
                 <td></td>
                 <td><button>提交</button></td>
