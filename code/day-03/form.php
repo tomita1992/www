@@ -6,22 +6,8 @@
     //3.响应          服务端的反馈
     if($_SERVER['REQUEST_METHOD'] === 'POST')
     {
-        //1.校验参数的完整性 比如说有没有填 empty对判断是否为空最为合适
-        foreach($_POST as $key => $value)
-        {
-            if(empty($value))
-            {
-                
-            }
-            else
-            {
-
-            }
-        }
-        echo '请填写完整信息';
         
-        
-      /* 
+      
         if(empty($_POST['user_id']))
         {
             //要么没有提交用户名 或者 用户名为空
@@ -86,7 +72,7 @@
                     }
                 }
             }    
-        }    */
+        }    
     }
     
 ?>
