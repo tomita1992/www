@@ -4,6 +4,10 @@
     //1.接收并校验
     //2.持久化        在数据库或者文件上持久保存
     //3.响应          服务端的反馈
+    
+    
+    
+    //判断是否为POST提交 
     if($_SERVER['REQUEST_METHOD'] === 'POST')
     {
         
@@ -15,6 +19,8 @@
         }
         else
         {
+            //当用户名不为空才保存
+            $user_id = $_POST['user_id'];
             if(empty($_POST['password']))
             {
                 //要么没有提交密码 或者 用户名为空
@@ -67,6 +73,8 @@
                                 $str = $cmp[0].$cmp[1].$cmp[3].$cmp[4].$cmp[5].$cmp[6]."\n";
                                 fputs($myfile, $str);    
                                 fclose($myfile);
+                                
+                                $message = "注册成功";
                             }                                                     
                         }
                     }
@@ -88,7 +96,12 @@
         <table border = "1">
             <tr>
                 <td><label for = "user_id"></label>用户名</td>
-                <td><input type = "text" name = "user_id" id = "user_id"></td>
+                <!-- 判断是否有错误信息，是否提交成功 ，是否填写了用户名 -->
+                <?php if(isset($message) && $message != '注册成功' && isset($user_id)): ?>
+                    <td><input type = "text" name = "user_id" id = "user_id" value = "<?php echo $user_id ;?>"></td>
+                <?php else : ?>
+                    <td><input type = "text" name = "user_id" id = "user_id"></td>
+                <?php endif ?>
             </tr>
             <tr>
                 <td><label for = "password">密码</label></td>

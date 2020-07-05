@@ -14,3 +14,5 @@ assd | aa |  | male | 临时工 | true |
 asda | aa |  | male | 临时工 | true | 
 asdasd | aaa |  | male | 临时工 | true | 
 asda | aaa | asdas@ada | male | football | 临时工 | 
+asda | aaaa |  | male | football | 临时工 | 
+asdas | aaa |  | male | football | 临时工 | 
