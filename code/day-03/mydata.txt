@@ -1,0 +1,16 @@
+cui02093920 | cui1968530 | cui02093920@gmail.com | male | 
+cui02093920 | cui1968530 |  | male | 
+sdfsd | sssss |  | male | 
+sdfsd | sssss |  | male | 
+asdas | aaa |  | male | 
+asdasd | aaaa |  | male | 临时工 | 
+asdas | aaaa |  | male | 临时工 | 
+sdfsdfsd | aaaa |  | male | football , basketball , earth
+ssssdfdsf | aaaa |  | male | football , basketball临时工 | 
+asdasd | aaa |  | male | football , basketball | 临时工 | 
+sadasd | aaa |  | male | 临时工 | true | 
+asdasd | aaa |  | male | 临时工 | true | 
+assd | aa |  | male | 临时工 | true | 
+asda | aa |  | male | 临时工 | true | 
+asdasd | aaa |  | male | 临时工 | true | 
+asda | aaa | asdas@ada | male | football | 临时工 | 

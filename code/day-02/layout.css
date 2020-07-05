@@ -1,0 +1,14 @@
+.test1
+{
+    display: inline-block;
+    width: 360px;
+    height: 500px;   
+    margin: 30px;
+}
+.text
+{
+    float: left;
+    font-size: 18px;
+    font-weight: bold;
+    font-style: inherit;
+}

@@ -1,0 +1,10 @@
+@import url('layout.css');
+#test
+{
+    text-align: center;
+}
+.img
+{
+    width:360px; 
+    height:360px; 
+}
