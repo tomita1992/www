@@ -96,12 +96,8 @@
         <table border = "1">
             <tr>
                 <td><label for = "user_id"></label>用户名</td>
-                <!-- 判断是否有错误信息，是否提交成功 ，是否填写了用户名 -->
-                <?php if(isset($message) && $message != '注册成功' && isset($user_id)): ?>
-                    <td><input type = "text" name = "user_id" id = "user_id" value = "<?php echo $user_id ;?>"></td>
-                <?php else : ?>
-                    <td><input type = "text" name = "user_id" id = "user_id"></td>
-                <?php endif ?>
+                <!-- 判断是否填写了用户名 -->
+                <td><input type = "text" name = "user_id" id = "user_id" value = "<?php echo isset($user_id) ? $user_id : '';?>"></td>
             </tr>
             <tr>
                 <td><label for = "password">密码</label></td>
