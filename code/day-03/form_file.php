@@ -33,19 +33,13 @@
             return;
         }
         
-        echo '123';
+        $GLOBALS['message'] = '上传成功';
     }
     
     if($_SERVER['REQUEST_METHOD'] === 'POST')
     {
-        
-        
-        //接收文件时使用$_FILES超全局成员
-        var_dump($_FILES);
         upload();
     }
-
-    
 
 ?>
 <!-- 如何提交与接收数据 -->
