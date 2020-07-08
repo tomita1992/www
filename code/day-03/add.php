@@ -2,7 +2,7 @@
 <html lang="zh-cn">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/img/css/bootstrap.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap.css">
     <title>添加音乐</title>
 </head>
 <body>
