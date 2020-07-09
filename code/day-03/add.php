@@ -13,6 +13,7 @@
         </div>
       </div>
     </div>
+    <form action="<?php echo $SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data;"></form>
     <div class="container mt-5">
         <h1 class = "display-4">添加音乐</h1>
         <hr>
