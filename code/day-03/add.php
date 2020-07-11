@@ -6,15 +6,21 @@
         if(empty($_POST['title']))
         {
             $GLOBALS['message_title'] = '请填写歌名';
-            return;
-            if((mb_strlen($_POST['title']) <= 20))
+            return; 
+        }
+        else
+        {
+            $str = mb_strlen($_POST['title']);
+            
+            if($str >= 20)
             {
                 $GLOBALS['message_title'] = '歌名字符过长';
                 return;
             }
+            //保存歌名
+            $GLOBALS['title'] = $_POST['title'];
         }
-        //保存歌名
-        $GLOBALS['title'] = $_POST['title'];
+
     }
     //校验歌手名是否为空且在7个字以下
     function check_singer()
@@ -24,14 +30,18 @@
         {
             $GLOBALS['message_singer'] = '请填写歌手名';
             return;
-            if((mb_strlen($_POST['singer']) <= 7))
+        }
+        else
+        {
+            $str = mb_strlen($_POST['singer']);
+            if($str >= 7)
             {
                 $GLOBALS['message_singer'] = '歌手名字符过长';
                 return;
             }
+            //保存歌手名
+            $GLOBALS['singer'] = $_POST['singer'];
         }
-        //保存歌手名
-        $GLOBALS['singer'] = $_POST['singer'];
     }
     //校验海报链接是否为空且在100字符以下
     function check_poster()
@@ -41,14 +51,18 @@
         {
             $GLOBALS['message_poster'] = '请填写海报链接';
             return;
-            if((strlen($_POST['poster']) <= 100))
+        }
+        else
+        {
+            $str = strlen($_POST['poster']);
+            if($str >= 100)
             {
                 $GLOBALS['message_poster'] = '海报链接字符过长';
                 return;
             }
+            //保存海报链接
+            $GLOBALS['poster'] = $_POST['poster'];
         }
-        //保存海报链接
-        $GLOBALS['poster'] = $_POST['poster'];
     }
     //校验歌名，歌手名，海报链接的函数    
     function upload()
@@ -57,20 +71,53 @@
        check_singer();
        check_poster();   
     }
-    //校验文件是否上传成功的函数
-    function upload_file()
+
+    //校验图片文件是否上传成功
+    function upload_img_file()
     {
-        //查看是否上传文件
-        if(!isset($_FILES['music_file']))
+        //查看是否上传图片文件
+        if(!(isset($_FILES['img_file'])))
+        {
+            $GLOBALS['message_img_file'] = '请上传海报文件';
+            return;
+        }
+        $img = $_FILES['img_file'];
+        
+        if(!isset($img['error']) != UPLOAD_ERR_OK)
+        {
+            $GLOBALS['message_img_file'] = '上传海报失败';
+            return;
+        }
+        //保存上传时的临时路径
+        $source = $img['tmp_name'];
+        //保存服务器存储路径
+        $target = './assets/img/' . $img['name'];
+        
+        $moved = move_uploaded_file($source, $target);
+        
+        if(!isset($moved))
+        {
+            $GLOBALS['message_img_file'] = '上传海报文件失败';
+            return;
+        }
+        
+    }
+
+
+    //校验音乐文件是否上传成功的函数
+    function upload_music_file()
+    {
+        //查看是否上传音乐文件
+        if(!(isset($_FILES['music_file'])))
         {
             $GLOBALS['message_file'] = '请上传音乐文件';
             return;
         }
         
-        //保存上传的文件
+        //保存上传的音乐文件
         $music_file = $_FILES['music_file'];
         
-        //查看上传文件的错误码
+        //查看上传音乐文件的错误码
         if($music_file['error'] != UPLOAD_ERR_OK)
         {
             $GLOBALS['message_file'] = '上传音乐文件失败';
@@ -79,23 +126,27 @@
         //保存上传文件的临时路径
         $source = $music_file['tmp_name'];
         //保存文件存放的路径
-        $GLOBALE['target'] = './assets/data/' . $music_file['name'];
+        $path = './assets/music/' . $music_file['name'];
         //移动上传文件到正式的保存目录
-        
+        $moved = move_uploaded_file($source, $path);
+
         //查看文件是否移动成功
-        if(!isset($GLOBALE['target']))
+        if(!(isset($moved)))
         {
             $GLOBALS['message_file'] = '上传音乐文件失败';
             return; 
         }
-        
-        $GLOBALS['message_file'] = '保存成功';
+        else
+        {
+            $GLOBALS['uploaded'] = true;
+        }
     }
 
     if($_SERVER['REQUEST_METHOD'] === 'POST')
     {
         upload();
-        upload_file();
+        upload_img_file();
+        upload_music_file();
     }
 ?>
 <!DOCTYPE html>
@@ -106,17 +157,10 @@
     <title>添加音乐</title>
 </head>
 <body>
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-            <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: First slide"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#555" dy=".3em">First slide</text></svg>
-        </div>
-      </div>
-    </div>
     <div class="container mt-5">
         <h1 class = "display-4">添加音乐</h1>
         <hr>
-        <form action = "<?php echo $_SERVER['PHP_SELF'] ?>" method = "POST" enctype="multipart/form-data;">
+        <form action = "<?php echo $_SERVER['PHP_SELF'] ?>" method = "post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for = "title">歌名</label>
                 
@@ -133,25 +177,54 @@
            
             <div class="form-group">
                 <label for="singer">歌手</label>
-                <input type="text" class = "form-control is-invalid" name = "singer" id = "singer" aria-describedby = "singerhelp" placeholder = "请输入7字以下的歌手名">
+                
+                <?php if($_SERVER['REQUEST_METHOD'] === 'GET'): ?>
+                    <input type="text" class = "form-control" name = "singer" id = "singer" aria-describedby = "singerhelp" placeholder = "请输入7字以下的歌手名">
+                <?php elseif($_SERVER['REQUEST_METHOD'] === 'POST'): ?>
+                    <input type="text" class = "<?php echo empty($message_singer)? 'form-control is-valid' : 'form-control is-invalid' ;?>" name = "singer" value = "<?php echo isset($singer)? $singer : '' ; ?>" id = "singer" aria-describedby = "singerhelp" placeholder = "请输入7字以下的歌手名">
+                <?php endif ?> 
+                
                 <small id = "singerhelp" class="invalid-feedback"><?php echo isset($message_singer) ? $message_singer : ''; ?></small>
             </div>
-            <div class="form-group">
-                <label for = "name">海报</label>
-                <input type = "text" class = "form-control is-invalid" name = "poster" id = "name" aria-describedby = "namehelp" placeholder = "请添加海报链接">
-                <small id = "namehelp" class="invalid-feedback"><?php echo isset($message_poster) ? $message_poster : ''; ?></small>
+            
+            <div class="form-group mb-5">
+                <label for = "name">歌手信息</label>
+                <?php if($_SERVER['REQUEST_METHOD'] === 'GET'): ?>
+                    <input type="text" class = "form-control" name = "poster" id = "poster" aria-describedby = "posterhelp" placeholder = "请添歌手信息链接">
+                <?php elseif($_SERVER['REQUEST_METHOD'] === 'POST'): ?>
+                    <input type="text" class = "<?php echo empty($message_poster)? 'form-control is-valid' : 'form-control is-invalid' ?>" name = "poster" value = "<?php echo isset($poster)? $poster : '' ; ?>" id = "poster" aria-describedby = "poster" placeholder = "请输入100字以下链接">
+                <?php endif ?> 
+                <small id = "posterhelp" class="invalid-feedback"><?php echo isset($message_poster) ? $message_poster : ''; ?></small>
             </div>
-            <div class = "custom-file">
-                <label class = "custom-file-label" for = "customFile">请上传音乐文件</label>  
-                <input type = "file" class = "custom-file-input is-invalid"  name = "music_file" id = "customFile" aria-describedby = "filehelp">
-                <small id = "filehelp" class="invalid-feedback"><?php echo isset($message_file) ? $message_file : ''; ?></small>
+            
+            <div class="form-group mb-5">
+                <div class = "custom-file">
+                    <label class = "custom-file-label" for = "custom_img_File">请上传海报图片</label>  
+                    <input type = "file" class = "custom-file-input is-invalid"  name = "img_file" id = "custom_img_File" aria-describedby = "img_filehelp">
+                    <small id = "img_filehelp" class="invalid-feedback"><?php echo isset($message_img_file) ? $message_img_file : ''; ?></small>
+                </div>
             </div>
+            
+            <div class="form-group mb-5">
+                <div class = "custom-file">
+                    <label class = "custom-file-label" for = "custom_music_File">请上传音乐文件</label>  
+                    <input type = "file" class = "custom-file-input is-invalid"  name = "music_file" id = "custom_music_File" aria-describedby = "music_filehelp">
+                    <small id = "music_filehelp" class="invalid-feedback"><?php echo isset($message_file) ? $message_file : ''; ?></small>
+                </div>
+            </div>
+            
             <!-- class = "btn btn-block btn-primary"可以让按钮横向布满整个要素 -->
             <div class = "form-group">
                 <label for="save_file"></label>  
-                <button class = "btn btn-block btn-primary" id = "save_file">保存</button>
+                <button type="subimt" class = "btn btn-block btn-primary" id = "save_file">保存</button>
             </div>
         </form>
+        <?php if($uploaded): ?>
+        <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">上传成功!</h4>
+            <p>请在音乐列表中查看</p>
+        </div>
+        <?php endif ?>
         <div class="container mt-5">
             <hr>
             <a href="http://day-03.io/music.php" class="btn btn-secondary btn-lg">返回音乐列表</a>

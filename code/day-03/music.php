@@ -26,6 +26,7 @@
 <html lang="zh-cn">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- HTML中/为根目录 -->
     <link rel="stylesheet" href="/assets/css/bootstrap.css">
     <title>音乐列表</title>
@@ -39,7 +40,8 @@
                 <tr>
                     <td>编号</td>
                     <td>歌名</td>
-                    <td>歌手</td>
+                    <td>歌手名</td>
+                    <td>歌手信息</td>
                     <td>海报</td>
                     <td>播放</td>
                     <td>操作</td>
@@ -51,6 +53,7 @@
                     <td><?php echo isset($music[0][0]) ? $music[0][0] : '' ;?></td>
                     <td><?php echo isset($music[0][1]) ? $music[0][1] : '' ;?></td>
                     <td><a href="<?php echo isset($music[0][2]) ? $music[0][2] : '' ;?>">查看</a></td>
+                    <td><img src="" alt=""></td>
                     <td><audio src="<?php echo isset($music[0][3]) ? $music[0][3] : ''; ?>" controls></audio></td>
                     <td><button class="btn btn-danger btm-sm">删除</button></td>
                 </tr>
@@ -59,6 +62,7 @@
                     <td><?php echo isset($music[1][0]) ? $music[1][0] : '' ;?></td>
                     <td><?php echo isset($music[1][1]) ? $music[1][1] : '' ;?></td>
                     <td><a href="<?php echo isset($music[1][2]) ? $music[1][2] : '' ;?>">查看</a></td>
+                    <td><img src="" alt=""></td>
                     <td><audio src="<?php echo isset($music[1][3]) ? $music[1][3] : ''; ?>" controls></audio></td>
                     <td><button class="btn btn-danger btm-sm">删除</button></td>
                 </tr>
@@ -67,6 +71,7 @@
                     <td><?php echo isset($music[2][0]) ? $music[2][0] : '' ;?></td>
                     <td><?php echo isset($music[2][1]) ? $music[2][1] : '' ;?></td>
                     <td><a href="<?php echo isset($music[2][2]) ? $music[2][2] : '' ;?>">查看</a></td>
+                    <td><img src="" alt=""></td>
                     <td><audio src="<?php echo isset($music[2][3]) ? $music[2][3] : ''; ?>" controls></audio></td>
                     <td><button class="btn btn-danger btm-sm">删除</button></td>
                 </tr>

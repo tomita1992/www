@@ -22,7 +22,7 @@
         //上传的临时路径
         $source = $img['tmp_name'];
         //保存完整的文件名字
-        $target = './img/' . $img['name'];
+        $target = './assets/img/' . $img['name'];
         //将上传的文件移动到文件储存路径
         $moved = move_uploaded_file($source, $target);
         
