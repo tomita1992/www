@@ -1,26 +1,32 @@
 <?php 
     
     //打开文件读取数据 php中.为根目录
-    $file = fopen('./assets/data/music_data', 'r');
+    $fp_ride = fopen('./assets/data/music_data.txt', 'r');
 
-    if(!$file)
+    if(!$fp_ride)
     {
-        echo '读取数据错误';
+        fclose($fp_ride);
     }
     else
     {   
         //定义一个读取最大值为100Byte的常数
-        define('BYTE_100', 100);
+        define('BYTE_300', 300);
+        $i = 0;
         //读取到最后一行为止
-        while(!feof($file))
+        while(!feof($fp_ride))
         {
             //带入每一行数据
-            $data = fgets($file, BYTE_100);
+            $data = fgets($fp_ride, BYTE_300);
             //将一行的数据分割成每个部分
-            $music[] = explode('|', $data);
+            $tmp = explode('|', $data);
+            foreach($tmp as $key => $value)
+            {
+                $music[$i][] = trim($value);
+            }
+            $i++;
         }
     }
-    fclose($file);
+    fclose($fp_ride);
 ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -29,6 +35,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- HTML中/为根目录 -->
     <link rel="stylesheet" href="/assets/css/bootstrap.css">
+    <style>
+        img
+        {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
     <title>音乐列表</title>
 </head>
 <body>
@@ -53,8 +66,8 @@
                     <td><?php echo isset($music[0][0]) ? $music[0][0] : '' ;?></td>
                     <td><?php echo isset($music[0][1]) ? $music[0][1] : '' ;?></td>
                     <td><a href="<?php echo isset($music[0][2]) ? $music[0][2] : '' ;?>">查看</a></td>
-                    <td><img src="" alt=""></td>
-                    <td><audio src="<?php echo isset($music[0][3]) ? $music[0][3] : ''; ?>" controls></audio></td>
+                    <td><img src="<?php echo isset($music[0][3]) ? $music[0][3] : '' ;?>" alt=""></td>
+                    <td><audio src="<?php echo isset($music[0][4]) ? $music[0][4] : ''; ?>" controls></audio></td>
                     <td><button class="btn btn-danger btm-sm">删除</button></td>
                 </tr>
                 <tr>
@@ -62,8 +75,8 @@
                     <td><?php echo isset($music[1][0]) ? $music[1][0] : '' ;?></td>
                     <td><?php echo isset($music[1][1]) ? $music[1][1] : '' ;?></td>
                     <td><a href="<?php echo isset($music[1][2]) ? $music[1][2] : '' ;?>">查看</a></td>
-                    <td><img src="" alt=""></td>
-                    <td><audio src="<?php echo isset($music[1][3]) ? $music[1][3] : ''; ?>" controls></audio></td>
+                    <td><img src="<?php echo isset($music[1][3]) ? $music[1][3] : '' ;?>" alt=""></td>
+                    <td><audio src="<?php echo isset($music[1][4]) ? $music[1][4] : ''; ?>" controls></audio></td>
                     <td><button class="btn btn-danger btm-sm">删除</button></td>
                 </tr>
                 <tr>
@@ -71,8 +84,8 @@
                     <td><?php echo isset($music[2][0]) ? $music[2][0] : '' ;?></td>
                     <td><?php echo isset($music[2][1]) ? $music[2][1] : '' ;?></td>
                     <td><a href="<?php echo isset($music[2][2]) ? $music[2][2] : '' ;?>">查看</a></td>
-                    <td><img src="" alt=""></td>
-                    <td><audio src="<?php echo isset($music[2][3]) ? $music[2][3] : ''; ?>" controls></audio></td>
+                    <td><img src="<?php echo isset($music[1][3]) ? $music[1][3] : '' ;?>" alt=""></td>
+                    <td><audio src="<?php echo isset($music[2][4]) ? $music[2][4] : ''; ?>" controls></audio></td>
                     <td><button class="btn btn-danger btm-sm">删除</button></td>
                 </tr>
             </tbody>
