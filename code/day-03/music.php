@@ -1,5 +1,6 @@
 <?php 
     
+    require 'delete.php';
     //打开文件读取数据 php中.为根目录
     $fp_ride = fopen('./assets/data/music_data.txt', 'r');
     if(!$fp_ride)
@@ -26,6 +27,7 @@
         }
     }
     fclose($fp_ride);
+
 ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -37,8 +39,8 @@
     <style>
         img
         {
-            width: 100px;
-            height: 100px;
+            max-width: 80px;
+            max-height: 80px;
         }
     </style>
     <title>音乐列表</title>
@@ -47,66 +49,34 @@
     <div class="container my-3">
         <h1 class = "display-4">音乐列表</h1>
         <hr>
-        <table class="table table-bordered table-dark table-striped">
-            <thead class = "thead-inverse">
-                <tr>
-                    <td>编号</td>
-                    <td>歌名</td>
-                    <td>歌手名</td>
-                    <td>歌手信息</td>
-                    <td>海报</td>
-                    <td>播放</td>
-                    <td>操作</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><?php echo uniqid();?></td>
-                    <td><?php echo isset($music[0][0]) ? $music[0][0] : '' ;?></td>
-                    <td><?php echo isset($music[0][1]) ? $music[0][1] : '' ;?></td>
-                    <td><a href="<?php echo isset($music[0][2]) ? $music[0][2] : '' ;?>">查看</a></td>
-                    <td><img src="<?php echo isset($music[0][3]) ? $music[0][3] : '' ;?>" alt=""></td>
-                    <td><audio src="<?php echo isset($music[0][4]) ? $music[0][4] : ''; ?>" controls></audio></td>
-                    <td><button class="btn btn-danger btm-sm">删除</button></td>
-                </tr>
-                <tr>
-                    <td><?php echo uniqid();?></td>
-                    <td><?php echo isset($music[1][0]) ? $music[1][0] : '' ;?></td>
-                    <td><?php echo isset($music[1][1]) ? $music[1][1] : '' ;?></td>
-                    <td><a href="<?php echo isset($music[1][2]) ? $music[1][2] : '' ;?>">查看</a></td>
-                    <td><img src="<?php echo isset($music[1][3]) ? $music[1][3] : '' ;?>" alt=""></td>
-                    <td><audio src="<?php echo isset($music[1][4]) ? $music[1][4] : ''; ?>" controls></audio></td>
-                    <td><button class="btn btn-danger btm-sm">删除</button></td>
-                </tr>
-                <tr>
-                    <td><?php echo uniqid();?></td>
-                    <td><?php echo isset($music[2][0]) ? $music[2][0] : '' ;?></td>
-                    <td><?php echo isset($music[2][1]) ? $music[2][1] : '' ;?></td>
-                    <td><a href="<?php echo isset($music[2][2]) ? $music[2][2] : '' ;?>">查看</a></td>
-                    <td><img src="<?php echo isset($music[2][3]) ? $music[2][3] : '' ;?>" alt=""></td>
-                    <td><audio src="<?php echo isset($music[2][4]) ? $music[2][4] : ''; ?>" controls></audio></td>
-                    <td><button class="btn btn-danger btm-sm">删除</button></td>
-                </tr>
-                <tr>
-                    <td><?php echo uniqid();?></td>
-                    <td><?php echo isset($music[3][0]) ? $music[3][0] : '' ;?></td>
-                    <td><?php echo isset($music[3][1]) ? $music[3][1] : '' ;?></td>
-                    <td><a href="<?php echo isset($music[3][2]) ? $music[3][2] : '' ;?>">查看</a></td>
-                    <td><img src="<?php echo isset($music[3][3]) ? $music[3][3] : '' ;?>" alt=""></td>
-                    <td><audio src="<?php echo isset($music[3][4]) ? $music[3][4] : ''; ?>" controls></audio></td>
-                    <td><button class="btn btn-danger btm-sm">删除</button></td>
-                </tr>
-                <tr>
-                    <td><?php echo uniqid();?></td>
-                    <td><?php echo isset($music[4][0]) ? $music[4][0] : '' ;?></td>
-                    <td><?php echo isset($music[4][1]) ? $music[4][1] : '' ;?></td>
-                    <td><a href="<?php echo isset($music[4][2]) ? $music[4][2] : '' ;?>">查看</a></td>
-                    <td><img src="<?php echo isset($music[4][3]) ? $music[4][3] : '' ;?>" alt=""></td>
-                    <td><audio src="<?php echo isset($music[4][4]) ? $music[4][4] : ''; ?>" controls></audio></td>
-                    <td><button class="btn btn-danger btm-sm">删除</button></td>
-                </tr>
-            </tbody>
-        </table>
+        <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+            <table class="table table-bordered table-dark table-striped">
+                <thead class = "thead-inverse">
+                    <tr>
+                        <td class="text-center">编号</td>
+                        <td class="text-center">歌名</td>
+                        <td class="text-center">歌手名</td>
+                        <td class="text-center">歌手信息</td>
+                        <td class="text-center">海报</td>
+                        <td class="text-center">播放</td>
+                        <td class="text-center">操作</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php for($i = 0; $i < ($rows-1); $i++): ?>
+                    <tr>
+                        <td><?php echo ($i+1); ?></td>
+                        <td><?php echo $music[$i][0]; ?></td>
+                        <td><?php echo $music[$i][1]; ?></td>
+                        <td><a href="<?php echo $music[$i][2]; ?>">查看</a></td>
+                        <td><img src="<?php echo $music[$i][3]; ?>" alt=""></td>
+                        <td><audio src="<?php echo $music[$i][4]; ?>" controls></audio></td>
+                        <td><button class="btn btn-danger btm-sm" name = "<?php echo $i; ?>">删除</button></td>
+                    </tr>
+                    <?php endfor ?>
+                </tbody>
+            </table>
+        </form>
         <div class="container mt-5">
             <hr>
             <a href="http://day-03.io/add.php" class="btn btn-secondary btn-lg btn-block">添加</a>

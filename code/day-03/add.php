@@ -82,29 +82,33 @@
     function upload_img_file()
     {
         //查看是否上传图片文件
-        if(!(isset($_FILES['img_file'])))
+        if(!isset($_FILES['img_file']))
         {
             $GLOBALS['message_img_file'] = '请上传海报文件';
-            return;
+            return false;
         }
         $img = $_FILES['img_file'];
         
-        if(!isset($img['error']) != UPLOAD_ERR_OK)
+        if($img['error'] != UPLOAD_ERR_OK)
         {
             $GLOBALS['message_img_file'] = '上传海报失败';
-            return;
+            return false;
         }
         //保存上传时的临时路径
         $source = $img['tmp_name'];
         //保存服务器存储路径
-        $GLOBALS['target'] = './assets/img/' . $img['name'];
+        $GLOBALS['target'] = './assets/img/' . uniqid(). '-' . $img['name'];
         
         $moved = move_uploaded_file($source, $GLOBALS['target']);
         
         if(!isset($moved))
         {
             $GLOBALS['message_img_file'] = '上传海报文件失败';
-            return;
+            return false;
+        }
+        else
+        {
+            return true;
         }
     }
 
@@ -116,7 +120,7 @@
         if(!(isset($_FILES['music_file'])))
         {
             $GLOBALS['message_file'] = '请上传音乐文件';
-            return;
+            return false;
         }
         
         //保存上传的音乐文件
@@ -126,12 +130,12 @@
         if($music_file['error'] != UPLOAD_ERR_OK)
         {
             $GLOBALS['message_file'] = '上传音乐文件失败';
-            return;
+            return false;
         }
         //保存上传文件的临时路径
         $source = $music_file['tmp_name'];
         //保存文件存放的路径
-        $GLOBALS['path'] = './assets/music/' . $music_file['name'];
+        $GLOBALS['path'] = './assets/music/' . uniqid(). '-' . $music_file['name'];
         //移动上传文件到正式的保存目录
         $moved = move_uploaded_file($source, $GLOBALS['path']);
 
@@ -139,45 +143,46 @@
         if(!(isset($moved)))
         {
             $GLOBALS['message_file'] = '上传音乐文件失败';
-            return; 
+            return false; 
         }
         else
         {
-            $GLOBALS['uploaded'] = true;
+            return true;
         }
     }
 
     //保存上传数据的函数
     function uploaded_write()
     {
-        if($GLOBALS['uploaded'])
+        //打开文件
+        $fp_write = fopen('./assets/data/music_data.txt', 'a+');
+        if(!$fp_write)
         {
-
-            //打开文件
-            $fp_write = fopen('./assets/data/music_data.txt', 'a+');
-            if(!$fp_write)
-            {
-                fclose($fp_write);
-            }
-            
-            $data = $GLOBALS['title'] . ' | ' . $GLOBALS['singer'] . ' | ' . $GLOBALS['poster'] . ' | ' . $GLOBALS['target'] . ' | ' . $GLOBALS['path'] . "\n";
-            
-            //写入文件
-            fputs($fp_write, $data);
             fclose($fp_write);
+            return false;
         }
+        
+        $data = $GLOBALS['title'] . ' | ' . $GLOBALS['singer'] . ' | ' . $GLOBALS['poster'] . ' | ' . $GLOBALS['target'] . ' | ' . $GLOBALS['path'] . "\n";
+        
+        //写入文件
+        fputs($fp_write, $data);
+        fclose($fp_write);
+        
+        $GLOBALS['uploaded'] = true;
     }
 
     if($_SERVER['REQUEST_METHOD'] === 'POST')
     {
         //校验歌名，歌手名，歌手信息链接
-        upload();
-        //校验海报文件
-        upload_img_file();
-        //校验音乐文件
-        upload_music_file();
-        //写入数据
-        uploaded_write();
+        if(upload())
+        {   
+            //校验海报文件,音乐文件
+            if(upload_img_file() && upload_music_file())
+            {
+                //写入数据
+                uploaded_write();
+            }
+        }
     }
 ?>
 <!DOCTYPE html>
@@ -191,7 +196,7 @@
     <div class="container mt-5">
         <h1 class = "display-4">添加音乐</h1>
         <hr>
-        <form action = "<?php echo $_SERVER['PHP_SELF'] ?>" method = "post" enctype="multipart/form-data">
+        <form action = "<?php echo $_SERVER['PHP_SELF'] ?>" method = "post" enctype="multipart/form-data" autocomplete="off">
             <div class="form-group">
                 <label for = "title">歌名</label>
                 
