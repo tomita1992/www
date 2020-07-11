@@ -1,1 +1,5 @@
 洋葱 | 杨宗纬 | https://baike.baidu.com/item/%E6%9D%A8%E5%AE%97%E7%BA%AC/5057379?fr=aladdin | ./assets/img/241f95cad1c8a7865165642c6009c93d70cf5040.jpg | ./assets/music/杨宗纬-洋葱.mp3
+痴心不改 | 金池 | https://baike.baidu.com/item/%E9%87%91%E6%B1%A0/2578589?fr=aladdin | ./assets/img/9e3df8dcd100baa12824a4514e10b912c9fc2ed4.jpg | ./assets/music/金池-痴心不改.mp3
+陈奕迅 | 不要说话 | https://baike.baidu.com/item/%E9%99%88%E5%A5%95%E8%BF%85/128029?fr=aladdin | ./assets/img/8ad4b31c8701a18b73b933c5922f07082938feee.jpg | ./assets/music/陈奕迅-不要说话.mp3
+可以了 | 陈奕迅 | https://baike.baidu.com/item/%E9%99%88%E5%A5%95%E8%BF%85/128029?fr=aladdin | ./assets/img/8ad4b31c8701a18b73b933c5922f07082938feee.jpg | ./assets/music/陈奕迅-可以了.mp3
+他不爱我 | 莫文蔚 | https://baike.baidu.com/item/%E8%8E%AB%E6%96%87%E8%94%9A/207736?fr=aladdin | ./assets/img/2cf5e0fe9925bc314913b6e65ddf8db1cb137005.jpg | ./assets/music/莫文蔚-他不爱我.mp3
