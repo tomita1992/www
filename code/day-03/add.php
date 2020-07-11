@@ -6,7 +6,7 @@
         if(empty($_POST['title']))
         {
             $GLOBALS['message_title'] = '请填写歌名';
-            return; 
+            return false; 
         }
         else
         {
@@ -15,12 +15,12 @@
             if($str >= 20)
             {
                 $GLOBALS['message_title'] = '歌名字符过长';
-                return;
+                return false;
             }
             //保存歌名
             $GLOBALS['title'] = $_POST['title'];
         }
-
+        return true;
     }
     //校验歌手名是否为空且在7个字以下
     function check_singer()
@@ -29,7 +29,7 @@
         if(empty($_POST['singer']))
         {
             $GLOBALS['message_singer'] = '请填写歌手名';
-            return;
+            return false;
         }
         else
         {
@@ -37,11 +37,12 @@
             if($str >= 7)
             {
                 $GLOBALS['message_singer'] = '歌手名字符过长';
-                return;
+                return false;
             }
             //保存歌手名
             $GLOBALS['singer'] = $_POST['singer'];
         }
+        return true;
     }
     //校验海报链接是否为空且在100字符以下
     function check_poster()
@@ -50,7 +51,7 @@
         if(empty($_POST['poster']))
         {
             $GLOBALS['message_poster'] = '请填写海报链接';
-            return;
+            return false;
         }
         else
         {
@@ -58,18 +59,23 @@
             if($str >= 100)
             {
                 $GLOBALS['message_poster'] = '海报链接字符过长';
-                return;
+                return false;
             }
             //保存海报链接
             $GLOBALS['poster'] = $_POST['poster'];
         }
+        return true;
     }
     //校验歌名，歌手名，海报链接的函数    
     function upload()
     {
-       check_title();
-       check_singer();
-       check_poster();   
+        $check_title = check_title();
+        $check_singer = check_singer();
+        $check_poster = check_poster();   
+        if($check_title && $check_singer && $check_poster)
+        {
+            return true;
+        }
     }
 
     //校验图片文件是否上传成功
@@ -91,16 +97,15 @@
         //保存上传时的临时路径
         $source = $img['tmp_name'];
         //保存服务器存储路径
-        $target = './assets/img/' . $img['name'];
+        $GLOBALS['target'] = './assets/img/' . $img['name'];
         
-        $moved = move_uploaded_file($source, $target);
+        $moved = move_uploaded_file($source, $GLOBALS['target']);
         
         if(!isset($moved))
         {
             $GLOBALS['message_img_file'] = '上传海报文件失败';
             return;
         }
-        
     }
 
 
@@ -126,9 +131,9 @@
         //保存上传文件的临时路径
         $source = $music_file['tmp_name'];
         //保存文件存放的路径
-        $path = './assets/music/' . $music_file['name'];
+        $GLOBALS['path'] = './assets/music/' . $music_file['name'];
         //移动上传文件到正式的保存目录
-        $moved = move_uploaded_file($source, $path);
+        $moved = move_uploaded_file($source, $GLOBALS['path']);
 
         //查看文件是否移动成功
         if(!(isset($moved)))
@@ -142,11 +147,37 @@
         }
     }
 
+    //保存上传数据的函数
+    function uploaded_write()
+    {
+        if($GLOBALS['uploaded'])
+        {
+
+            //打开文件
+            $fp_write = fopen('./assets/data/music_data.txt', 'a+');
+            if(!$fp_write)
+            {
+                fclose($fp_write);
+            }
+            
+            $data = $GLOBALS['title'] . ' | ' . $GLOBALS['singer'] . ' | ' . $GLOBALS['poster'] . ' | ' . $GLOBALS['target'] . ' | ' . $GLOBALS['path'] . "\n";
+            
+            //写入文件
+            fputs($fp_write, $data);
+            fclose($fp_write);
+        }
+    }
+
     if($_SERVER['REQUEST_METHOD'] === 'POST')
     {
+        //校验歌名，歌手名，歌手信息链接
         upload();
+        //校验海报文件
         upload_img_file();
+        //校验音乐文件
         upload_music_file();
+        //写入数据
+        uploaded_write();
     }
 ?>
 <!DOCTYPE html>
@@ -219,11 +250,13 @@
                 <button type="subimt" class = "btn btn-block btn-primary" id = "save_file">保存</button>
             </div>
         </form>
-        <?php if($uploaded): ?>
+        <?php if(isset($uploaded)): ?>
         <div class="alert alert-success" role="alert">
             <h4 class="alert-heading">上传成功!</h4>
             <p>请在音乐列表中查看</p>
         </div>
+        <?php else : ?>
+            <?php echo ''; ?>
         <?php endif ?>
         <div class="container mt-5">
             <hr>
