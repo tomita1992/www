@@ -94,6 +94,23 @@
             $GLOBALS['message_img_file'] = '上传海报失败';
             return false;
         }
+        if($img['size'] > (1 * 1024 * 1024))
+        {
+            $GLOBALS['message_img_file'] = '图片文件过大';
+            return false;
+        }
+        
+        if($img['size'] < (1 * 1024))
+        {
+            $GLOBALS['message_img_file'] = '图片文件过小';
+            return false;
+        }
+        $allowed_types = array('image/jpeg', 'image/png');
+        if(!(in_array($img['type'], $allowed_types)))
+        {
+            $GLOBALS['message_img_file'] = '请上传正确的文件类型';
+            return false;
+        }
         //保存上传时的临时路径
         $source = $img['tmp_name'];
         //保存服务器存储路径
@@ -132,6 +149,25 @@
             $GLOBALS['message_file'] = '上传音乐文件失败';
             return false;
         }
+        //一般不会用直接算好的数值 这样比较容易识别
+        if($music_file['size'] > (11 * 1024 * 1024))
+        {
+            $GLOBALS['message_file'] = '音乐文件过大';
+            return false;
+        }
+        
+        if($music_file['size'] < (1 * 1024 * 1024))
+        {
+            $GLOBALS['message_file'] = '音乐文件过小';
+            return false;
+        }
+
+        $music_types = array('audio/mpeg', 'audio/x-ms-wma');
+        if(!(in_array($music_file['type'], $music_types)))
+        {
+            $GLOBALS['message_file'] = '请上传正确的文件类型';
+            return false;
+        }
         //保存上传文件的临时路径
         $source = $music_file['tmp_name'];
         //保存文件存放的路径
@@ -161,8 +197,7 @@
             fclose($fp_write);
             return false;
         }
-        $falg = 1;
-        $data = $falg . ' | ' . $GLOBALS['title'] . ' | ' . $GLOBALS['singer'] . ' | ' . $GLOBALS['poster'] . ' | ' . $GLOBALS['target'] . ' | ' . $GLOBALS['path'] . "\n";
+        $data = $GLOBALS['title'] . ' | ' . $GLOBALS['singer'] . ' | ' . $GLOBALS['poster'] . ' | ' . $GLOBALS['target'] . ' | ' . $GLOBALS['path'] . "\n";
         
         //写入文件
         fputs($fp_write, $data);
@@ -178,10 +213,14 @@
         {   
             //校验海报文件,音乐文件
             if(upload_img_file() && upload_music_file())
-            {
+            {   
                 //写入数据
                 uploaded_write();
-            }
+            }   
+        }
+        if(isset($GLOBALS['uploaded']))
+        {
+            header('Location: music.php');
         }
     }
 ?>
@@ -236,7 +275,7 @@
             <div class="form-group mb-5">
                 <div class = "custom-file">
                     <label class = "custom-file-label" for = "custom_img_File">请上传海报图片</label>  
-                    <input type = "file" class = "custom-file-input is-invalid"  name = "img_file" id = "custom_img_File" aria-describedby = "img_filehelp">
+                    <input type = "file" class = "custom-file-input is-invalid" accept="image/*" name = "img_file" id = "custom_img_File" aria-describedby = "img_filehelp">
                     <small id = "img_filehelp" class="invalid-feedback"><?php echo isset($message_img_file) ? $message_img_file : ''; ?></small>
                 </div>
             </div>
@@ -244,7 +283,7 @@
             <div class="form-group mb-5">
                 <div class = "custom-file">
                     <label class = "custom-file-label" for = "custom_music_File">请上传音乐文件</label>  
-                    <input type = "file" class = "custom-file-input is-invalid"  name = "music_file" id = "custom_music_File" aria-describedby = "music_filehelp">
+                    <input type = "file" class = "custom-file-input is-invalid" accept="audio/*" name = "music_file" id = "custom_music_File" aria-describedby = "music_filehelp">
                     <small id = "music_filehelp" class="invalid-feedback"><?php echo isset($message_file) ? $message_file : ''; ?></small>
                 </div>
             </div>

@@ -3,7 +3,7 @@
     function upload()
     {
         //查看是否上传文件
-        if(!(isset($_FILES['img'])))
+        if(!isset($_FILES['img']))
         {
             $GLOBALS['message'] = "请上传文件";
             return;

@@ -3,4 +3,4 @@
 陈奕迅 | 不要说话 | https://baike.baidu.com/item/%E9%99%88%E5%A5%95%E8%BF%85/128029?fr=aladdin | ./assets/img/8ad4b31c8701a18b73b933c5922f07082938feee.jpg | ./assets/music/陈奕迅-不要说话.mp3
 可以了 | 陈奕迅 | https://baike.baidu.com/item/%E9%99%88%E5%A5%95%E8%BF%85/128029?fr=aladdin | ./assets/img/8ad4b31c8701a18b73b933c5922f07082938feee.jpg | ./assets/music/陈奕迅-可以了.mp3
 他不爱我 | 莫文蔚 | https://baike.baidu.com/item/%E8%8E%AB%E6%96%87%E8%94%9A/207736?fr=aladdin | ./assets/img/2cf5e0fe9925bc314913b6e65ddf8db1cb137005.jpg | ./assets/music/莫文蔚-他不爱我.mp3
-1 | 阿斯顿撒 | 奥斯丁 | asdas | ./assets/img/5f0ad6a0a17eb-新建文本文档 (2).txt | ./assets/music/5f0ad6a0a1d97-新しいテキスト ドキュメント.txt
+哭不出来 | 张惠妹 | https://baike.baidu.com/item/%E5%BC%A0%E6%83%A0%E5%A6%B9/234310?fr=aladdin | ./assets/img/5f0af03d64fa4-5fdf8db1cb134954d5b267675c4e9258d1094a01.jpg | ./assets/music/5f0af03d6563a-张惠妹-哭不出来.mp3
