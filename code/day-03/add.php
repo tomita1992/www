@@ -161,8 +161,8 @@
             fclose($fp_write);
             return false;
         }
-        
-        $data = $GLOBALS['title'] . ' | ' . $GLOBALS['singer'] . ' | ' . $GLOBALS['poster'] . ' | ' . $GLOBALS['target'] . ' | ' . $GLOBALS['path'] . "\n";
+        $falg = 1;
+        $data = $falg . ' | ' . $GLOBALS['title'] . ' | ' . $GLOBALS['singer'] . ' | ' . $GLOBALS['poster'] . ' | ' . $GLOBALS['target'] . ' | ' . $GLOBALS['path'] . "\n";
         
         //写入文件
         fputs($fp_write, $data);

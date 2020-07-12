@@ -1,6 +1,11 @@
 <?php 
-    
-    require 'delete.php';
+    //只有为POST提交是才执行删除
+    if($_SERVER['REQUEST_METHOD'] === 'POST')
+    {
+        require 'delete.php';
+        delete($_POST['row']);    
+    }    
+
     //打开文件读取数据 php中.为根目录
     $fp_ride = fopen('./assets/data/music_data.txt', 'r');
     if(!$fp_ride)
@@ -19,6 +24,7 @@
             $data = fgets($fp_ride, BYTE_300);
             //将一行的数据分割成每个部分
             $tmp = explode('|', $data);
+            $columns = count($tmp);
             foreach($tmp as $kay =>$value)
             {
                 $music[$rows][$kay] = trim($value);
@@ -63,16 +69,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php for($i = 0; $i < ($rows-1); $i++): ?>
-                    <tr>
-                        <td><?php echo ($i+1); ?></td>
-                        <td><?php echo $music[$i][0]; ?></td>
-                        <td><?php echo $music[$i][1]; ?></td>
-                        <td><a href="<?php echo $music[$i][2]; ?>">查看</a></td>
-                        <td><img src="<?php echo $music[$i][3]; ?>" alt=""></td>
-                        <td><audio src="<?php echo $music[$i][4]; ?>" controls></audio></td>
-                        <td><button class="btn btn-danger btm-sm" name = "<?php echo $i; ?>">删除</button></td>
-                    </tr>
+                    <?php for($row = 0; $row < ($rows-1); $row++): ?>
+                            <tr>
+                                <td><?php echo ($row+1); ?></td>
+                                <td><?php echo $music[$row][0]; ?></td>
+                                <td><?php echo $music[$row][1]; ?></td>
+                                <td><a href="<?php echo $music[$row][2]; ?>">查看</a></td>
+                                <td><img src="<?php echo $music[$row][3]; ?>" alt=""></td>
+                                <td><audio src="<?php echo $music[$row][4]; ?>" controls></audio></td>
+                                <td><button class="btn btn-danger btm-sm" name = "row" value="<?php echo $row; ?>">删除</button></td>
+                            </tr>
                     <?php endfor ?>
                 </tbody>
             </table>
