@@ -14,6 +14,11 @@
           height: 1000px;
           background-color: hotpink;
         }
+        /* 
+            媒体查询： 当使用min-width作为判断条件的时候 一定要从小到大去写 要不要不会生效 
+            原因是因为css从上往下执行
+            如果是max-width的话就要从大到小去写
+        */
         .container
         {
             width: 100%;
