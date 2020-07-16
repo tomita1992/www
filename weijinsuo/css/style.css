@@ -1,0 +1,62 @@
+/*
+* 我们的自定义样式
+* @Author: iceStone
+* @Date:   2020-07-16 
+* @Last Modified by:   iceStone
+* @Last Modified time: 2020-07-16
+*/
+ /** 约定
+ *  1.样式都通过ID去限定
+    2.尽可能都使用直接子代选择器 #header > .topbar
+ */ 
+
+
+/**
+ * 公共区域 
+ */
+body 
+{
+    font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;      
+}
+
+
+/**
+ * 头部区域
+ */
+ #header
+ {
+    height:300px;
+ }
+ #header > .topbar
+{
+    height: 40px;
+    border-bottom: 1px solid #c0c0c0;
+}
+#header > .topbar > .container > .row > div
+{
+    background-color: slategrey;
+    height: 40px;
+}
+#header > .topbar > .container > .row > div:nth-of-type(2n)
+{
+    background-color:yellowgreen;
+}
+
+
+ /**
+ * 测试样式区域 
+ */
+section
+{
+    height:200px;
+    background-color:salmon;
+}
+section:nth-of-type(2n+1)
+{
+    background-color: floralwhite;   
+}
+ 
+ 
+ /**
+ * 脚注区域
+ */
