@@ -13,3 +13,6 @@
     ...
   </div>
 </nav>
+
+常见的错误消息提示框
+<div calss = "alert alert-danger"></div>
