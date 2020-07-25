@@ -1,10 +1,15 @@
 {
-    "name": "administrator/composer",
-    "authors": [
-        {
-            "name": "cui02093920",
-            "email": "cui02093920@gmail.com"
+    "autoload": {
+        "psr-4":{
+            "APP\\" : "app/"
         }
-    ],
-    "require": {}
+    },
+    "config": {
+        "secure-http": false,
+        "disable-tls": true
+    },
+    "require": {
+        "nesbot/carbon": "^2.36",
+        "propel/propel": "~2.0@dev"
+    }
 }
