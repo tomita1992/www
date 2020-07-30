@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>readystate</title>
+</head>
+<body>
+    <script>
+        var xhr = new XMLHttpRequest();
+        console.log(`readyState: ${xhr.readyState} 初始化请求代理对象`);    //readyState 0 初始化请求代理对象
+        xhr.open('GET', '/code/time.php');
+        console.log(`readyState: ${xhr.readyState} 建立一个与服务端特定端口的连接(搭桥)`);    //readyState 1 建立一个与服务端特定端口的连接(搭桥)
+        xhr.send();
+        //用on来注册按钮这种会出现很多次的事件时会出现不能重复注册的问题 应该用addEventListener来注册事件
+        xhr.addEventListener('readystatechange', function(){
+            
+            //readyState 2 3 4
+            switch(this.readyState)
+            {
+                case 2: //已经接受到了响应报文的响应头
+                    //可以用指定键值的方式拿到特定的响应头内容
+                    console.log(this.getResponseHeader('date'));
+                    //拿到全部的响应头
+                    console.log(`readyState: ${this.readyState} 已经接受到了响应报文的响应头\n\n${this.getAllResponseHeaders('date')}`);
+                    break;
+                case 3: //已经下载响应报文的响应体
+                    console.log(`readyState: ${this.readyState} 已经下载响应报文的响应体\n\n${this.responseText}`);
+                    break;
+                case 4: //已经结束响应
+                    console.log(`readyState: ${xhr.readyState} 已经结束响应\n\n${this.responseText}`);
+                    break;
+            }
+        });
+    </script>
+</body>
+</html>

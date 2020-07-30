@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bilibili Ajax发送请求</title>
+</head>
+<body>
+    <script>
+        //目标:通过Ajax请求/time 地址 获取最新的时间，打印到控制台
+        
+        //Ajax中主要通过XMLHttpRequest来发送请求 俗称XHR 类似于浏览器
+        var xhr = new XMLHttpRequest();
+        //open这个方法用来建立与目标网址的连接 第一个参数为GET 第二个参数为网址 类似入输入网址 
+        xhr.open('GET', 'http://localhost:2090/time');
+        //类似于按回车
+        xhr.send();
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>udemy Ajax发送请求并接收</title>
+</head>
+<body>
+    <script>
+        var xhr = new XMLHttpRequest();
+        //先点击按钮再注册事件onreadystatechange就会出现为1的状态码 1为open 注册事件的时候已经为open 所以再注册事件以后就不会显示1这个状态码
+        //实际上注册事件时 应该越早越好
+        xhr.open('GET', '/code/time.php');
+        xhr.send();
+        xhr.onreadystatechange = function(){
+            if(this.readyState !== 4) return;
+            console.log(this.responseText);
+        };
+    </script>
+</body>
+</html>

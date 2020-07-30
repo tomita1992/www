@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bilibili Ajax发送请求并接收</title>
+</head>
+<body>
+    <input type="button" id = "btn">
+    <script>
+        btn.onclick = function(){
+            //目标:通过Ajax请求/time 地址 获取最新的时间，打印到控制台
+
+            /*总结
+                1. 由于JS单线程的特性，AJAX并没有设计一个阻塞的方法，而是通过事件来触发
+                2. onreadyStatechange 并不是专门设计的响应事件，而是状态码的一种表述 可以根据不同的状态码来注册事件
+                3. xhr.responseText 获取响应报文的响应体
+            */
+
+
+
+            //1. 创建一个请求代理对象
+            var xhr = new XMLHttpRequest();
+            //2. 通过代理对象建立与服务端的连接
+            xhr.open('GET', '/time');
+            //3. 基于连接发送请求
+            xhr.send();
+            //4. 等待服务端的响应 (基于js的单线程特质 没法办法等待响应 可以用事件的机制解决这个问题)
+
+            //5. 接收服务端的响应结果（响应报文中的响应体）
+            //因为不知道什么时候会得到响应的结果 需要注册一个事件 当请求的状态发生改变时 触发事件
+            xhr.onreadystatechange = function(){
+                //请求状态发生变化时触发
+                //this指向事件的元对象也就是xhr 这两者相等
+                //this.readyState > 2 3 4(数字 也就是请求状态的标识码 总共有5个状态为0 1 2 3 4)
+                //this.readyState => 4 为响应完成 可以拿到响应结果
+                //this.reaponseText => 为响应的响应体
+                if(this.readyState !== 4)
+                {
+                    return;
+                }
+                else
+                {
+                    console.log(`readyState: ${this.readyState} 已经接受到了响应报文的响应头\n\n${this.getAllResponseHeaders()}`);
+                }
+            };
+        };
+    </script>
+</body> 
+</html>
