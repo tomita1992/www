@@ -1,0 +1,34 @@
+<!-- Ajax bilibili 1-10 通过POST发送请求2 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>通过POST发送请求2</title>
+</head>
+<body>
+    <script>
+        let students = {id: 4, name: '王二麻子'};
+        //将javascript的連想配列转成JSON格式
+        let json = JSON.stringify(students);
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', 'add_student');
+        //用send() 方法设置请求体需要设置一个合理的Content-Type
+        xhr.setRequestHeader('Content-Type', 'application/json');
+
+        //用application/x-www-form-urlencoded这种方式属于表单提交的方式
+        // xhr.send('id=4&name=王二麻子');
+
+        //直接用JSON的格式去传输数据就服务端也就可以直接以JSON的格式去接收 这样比较方便
+        xhr.send(json);
+        xhr.onreadystatechange = function(){
+            if(this.readyState !== 3) return;
+                xhr.addEventListener('readystatechange', function(){
+                    if(this.readyState !== 4) return;
+                        if(this.status !== 200) return;
+                            console.log(this.responseText);
+                });
+        };
+    </script>
+</body>
+</html>
