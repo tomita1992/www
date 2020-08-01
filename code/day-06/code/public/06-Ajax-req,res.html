@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax 请求 响应</title>
+</head>
+<body>
+    <script>
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', '/add');
+        //设置请求头 用于告诉服务端 post请求体是什么格式的
+        //Content-Type 使用的是MIME Type格式 text/html image/jpeg 
+        //application/x-www-form-urlencoded 为form标签的默认格式
+         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        //send()通过设置请求体
+        //一般请求体的格式都是 urlencoded格式 name=zhangsan&age=18
+        xhr.send('name=zhangsan&age=18');
+        xhr.onreadystatechange = function(){
+            if(this.readyState !== 4) return;
+            console.log(this.getAllResponseHeaders());
+            console.log(this.responseText);
+        };
+    </script>
+</body>
+</html>
