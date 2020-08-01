@@ -1,0 +1,35 @@
+<!-- Ajax bilibili 1-09 XML -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML</title>
+</head>
+
+<body>
+    <script>
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', '/users.xml');
+        xhr.send();
+        xhr.onreadystatechange = function () {
+            if (this.readyState !== 3) return;
+            xhr.addEventListener('readystatechange', function () {
+                if (this.readyState !== 4) return;
+                //用responseText解析xml的时候只会返回xml格式的数据 因为responseText只能拿到字符串
+                // console.log(this.responseText);
+
+                //用提取对象的方式解析xml用resopnseXML 
+                console.log(this.responseXML);
+                //会把XML解析成一个DOM形式的对象
+                console.log(this.responseXML.documentElement.children);
+                //提取DOM对象的部分数据
+                console.log(this.responseXML.documentElement.getElementsByTagName('name'));
+            });
+        };
+    </script>
+</body>
+
+</html>

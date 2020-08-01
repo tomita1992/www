@@ -1,4 +1,8 @@
-//express为中间房间机制 为串联结构 可以理解为流水线
+/**
+ *  Ajax bilibili 1-08
+ */
+
+ //express为中间房间机制 为串联结构 可以理解为流水线
 const express = require('express');
 const app = express();
 //req.body为bodyParser模块所提供的方法 是一个中间房间 可以理解为一个一个的小车间

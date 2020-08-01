@@ -18,9 +18,9 @@
         xhr.onreadystatechange = function(){
             if(this.readyState !== 3) return;
             //用addEventListener来注册事件
-            xhr.addEventListener('readyStatechange', function(){
+            xhr.addEventListener('readystatechange', function(){
                 if(this.readyState !== 4) return;
-                console.log(this.getAllResponseHeaders);
+                console.log(this.getAllResponseHeaders());
             });    
         };
     </script>
