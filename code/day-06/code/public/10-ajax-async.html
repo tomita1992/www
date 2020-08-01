@@ -1,0 +1,27 @@
+<!-- Ajax bilibili 1-11 同步与异步 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>同步异步</title>
+</head>
+<body>
+    <script>
+        console.time('timer');
+        let xhr = new XMLHttpRequest();
+        //open的第三个参数为async为布尔值 意思为异步 默认值为true
+        //open中第三个参数设置为false会出现警告 内容为 建议不要使用同步模式的Ajax
+        //同步模式下会阻塞下一行send（）的处理 意思是send这一行会在请求的结束以后才会执行
+        xhr.open('GET', '/async', false);
+        xhr.send();
+        console.timeEnd('timer');
+        //由于send在请求结束以后才会执行 那时readyState已经为4 如果在这个位置注册事件的话 会来不及
+        //解决的方法可以把事件放在上面注册 但是在同步模式下 这个位置上请求已经执行完成 注册事件也没有意义
+        xhr.onreadystatechange = function(){
+            if(this.readyState !== 4) return;
+            console.log(this.responseText);
+        };
+    </script>
+</body>
+</html>

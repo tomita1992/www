@@ -12,7 +12,7 @@
         //将javascript的連想配列转成JSON格式
         let json = JSON.stringify(students);
         let xhr = new XMLHttpRequest();
-        xhr.open('POST', 'add_student');
+        xhr.open('POST', '/add_student');
         //用send() 方法设置请求体需要设置一个合理的Content-Type
         xhr.setRequestHeader('Content-Type', 'application/json');
 
