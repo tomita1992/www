@@ -1,5 +1,5 @@
 /**
- *  Ajax bilibili 1-08
+ *  Ajax bilibili 1-08 通过POST传送参数1
  */
 
  //express为中间房间机制 为串联结构 可以理解为流水线

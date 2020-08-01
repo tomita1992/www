@@ -1,0 +1,25 @@
+<!-- Ajax bilibili 1-01 GET请求通过？传递参数 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GET请求通过？传参数</title>
+</head>
+<body>
+    <script>
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', '/student?id=1');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send();
+        xhr.onreadystatechange = function(){
+            if(this.readyState !== 3) return;
+                xhr.addEventListener('readystatechange', function(){
+                    if(this.readyState !== 4) return;
+                        if(this.status !== 200) return;
+                            console.log(this.responseText);
+                });
+        };
+    </script>
+</body>
+</html>
