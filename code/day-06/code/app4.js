@@ -18,7 +18,8 @@
     // console.log(res.query.id);
     if(req.query.id)
     {
-        //通过Array对象中的find方法可以直接
+        //通过Array对象中的find方法可以直接查询一个键值在数组中存不存在
+        //forEach every some find filter 为ES6中新添加的操作数组的方法 非常常用
         const data = students.find(s => s.id == req.query.id);
         console.log(req.query.id);
         res.send(data.name);   
