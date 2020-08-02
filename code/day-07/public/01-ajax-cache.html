@@ -1,0 +1,55 @@
+<!-- Ajax bilibili 2-03 04 缓存问题 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax POST请求</title>
+</head>
+<body>
+    <!-- 
+        <a href="/time">time</a> 
+        html中在url地址前面输入/就代表当前的网站的域名
+    -->
+    <input id="btn-get" type="button" value="发送get">
+    <input id="btn-post" type="button" value="发送post">
+    <script>
+        //由于浏览器的缓存是根据地址作为缓存依据的
+        //所以当同样的地址发来请求的时候会优先将缓存的内容返回给客户端
+        //也就造成了IE9之前版本的浏览器会将只要是同样的地址即使是需要更新的数据也会将缓存的数据返回给客户端
+        //解决的办法为欺骗浏览器 让浏览器认为地址不同 具体的方式为每次请求都填写不同的参数 
+        //比方说/time?v= + date.now() 这样就可以毫秒的时间来作为为此请求都不同的参数 这是在服务端解决的方法
+        //还有一种方法 可以由服务端通过HTTP响应报文中的响应头告知客户端浏览器不要缓存当前地址 但是这只是属于一种君子协议
+
+        //在面试的时候可能会问到 如何做静态资源优化 应该回答可以将这些静态资源缓存到浏览器 
+        //如果再被问到如果静态资源更新应该怎么办 可以回答就可以通过用参数设置版本号的方式来解决
+        let xhr = new XMLHttpRequest();
+        let student = {id: 4, name: '王二麻子'};
+        let json = JSON.stringify(student);
+        
+        //注册一个按钮触发get请求
+        let btn_get = document.getElementById('btn-get');
+        btn_get.onclick = function(){
+            xhr.open('GET', '/time-no-cache');
+            xhr.setRequestHeader('Content-Type', 'Application/x-www-form-urlencoded');
+            xhr.send();
+        };
+        //注册一个按钮触发post请求
+        let btn_post = document.getElementById('btn-post');
+        btn_post.onclick = function(){
+            xhr.open('POST', '/add_student');
+            xhr.setRequestHeader('Content-Type', 'Application/json');
+            xhr.send(json);
+        };
+
+        xhr.addEventListener('readystatechange', function(){
+            if(this.readyState !== 3) return;
+                xhr.onreadystatechange = function(){
+                    if(this.readyState !== 4) return;
+                        if(this.status !== 200) return;
+                            console.log(this.responseText);
+                };
+        });
+    </script>
+</body>
+</html>
