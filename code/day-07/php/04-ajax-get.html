@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX发送GET请求并传递参数</title>
+</head>
+<body>
+    <ul id="list">
+    </ul>
+    <script>
+        //发送请求 获取列表数据 呈现在页面上
+        var list = document.getElementById('list');
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/php/users.php');
+        xhr.send(null);
+        xhr.onload = function(){
+            var data = JSON.parse(this.responseText);
+            
+            //将所有得到的数据转换成li
+            for(var i = 0; i < data.length; i++)
+            {
+                //动态创建元素
+                var li = document.createElement('li');
+                //将从客户端拿到的数据显示在li里
+                li.innerHTML = data[i].name;
+                //将从客户端拿到的id放在li的id属性里
+                li.id = data[i].id;
+                //作为ul的子元素添加到ul当中
+                list.appendChild(li);
+                //给每一个li注册点击事件
+                li.addEventListener('click', function(){
+                    var xhr1 = new XMLHttpRequest();
+                    xhr1.open('GET', '/php/users.php?id=' + this.id);
+                    xhr1.send(null);
+                    xhr1.onload = function(){
+                        window.alert(this.responseText);
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>

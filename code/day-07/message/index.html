@@ -1,0 +1,101 @@
+<!-- Ajax bilibili 2-06 07 留言板案例 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap.css">
+    <title>留言板</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="display-1">留言板</h1>
+        <hr>
+        <ul class="list-unstyled" id="message"></ul>
+        <hr>
+        <form>
+            <div class="form-group">
+                <label for="text_name">称呼:</label>
+                <input class="form-control" type="text" id="text_name">
+            </div>
+            
+            <div class="form-group">
+                <label for="text_content">留言:</label>
+                <textarea class="form-control" id="text_content" cols="80" rows="10"></textarea>
+            </div>
+            <button id="btn_send" class="btn btn-primary">提交</button>
+        </form>
+    </div>
+    <script>
+        /* 目标
+            1.捕获到按钮的点击事件（时机）
+            2.获取界面上文本框的内容
+            3.发送请求到服务端
+            4.提示添加成功
+            5.刷新（获取数据）
+        */
+        //获取表单内容
+        var xhr = new XMLHttpRequest();
+        var btn = document.getElementById('btn_send');
+        var form_name = document.getElementById('text_name');
+        var form_text = document.getElementById('text_content');
+        //注册按钮事件 点击提交时触发 上传数据
+        
+        btn.onclick = function(){
+
+            //处理post请求
+            let name = form_name.value;
+            let text = form_text.value;       
+            xhr.open('POST', '/api/reply');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send('name=' + name + '&content=' + text);
+            xhr.addEventListener('readystatechange', function(){
+                if(this.readyState !== 4) return;
+                    if(this.status !== 200) return;
+                        const new_message = JSON.parse(this.responseText);
+                        var liElement = document.createElement('li');
+                        liElement.className = 'media';
+                        liElement.innerHTML = '<div class="media-body">\
+                            <h4>'+ new_message.name +'</h4>\
+                            <p>'+ new_message.content +'</p>\
+                            <p>'+ new_message.created +'</p>\
+                        </div>';
+                        ulElement.appendChild(liElement);
+                });
+                return false;
+        };
+    </script>
+    <script>
+        //1.向服务端发起JSON请求 获取全部留言
+        var ulElement = document.getElementById('message');
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/api/message');
+        xhr.send();
+        xhr.addEventListener('readystatechange', function(){
+            if(this.readyState !== 4) return;
+                if(this.status !== 200) return;
+                    //2.将JSON格式的数据转换为数组（对象）呈现在界面上
+                    const message = JSON.parse(this.responseText);
+                    //2.1 遍历每一条数据
+                    //2.2 每一项数据生成一个li标签 呈现单个数据
+                    //2.3 将这个li追加到ul里面
+                    message.forEach(function (item){
+                        var liElement = document.createElement('li');
+                        liElement.className = 'media';
+                        liElement.innerHTML = '<div class="media-body">\
+                            <h4>'+ item.name +'</h4>\
+                            <p>'+ item.content +'</p>\
+                        </div>'
+                        ulElement.appendChild(liElement);
+                    });
+        });
+    </script>
+    <!-- <li class="media">
+            <div class="media-body">
+                <h4>张三</h4>
+                <p>你好</p>
+            </div>
+         </li> 
+    -->
+</body>
+</html>
