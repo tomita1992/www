@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创建对象的练习5</title>
+</head>
+<script>
+    function Image(width, height, size){
+        this.width = width;
+        this.height = height;
+        this.size = size;
+        this.showImage = function(){
+
+        };
+    }
+    function Cat(color, bodyWeight, age){
+        this.color = color;
+        this.bodyWeight = bodyWeight;
+        this.age = age;
+        this.fight = function(){
+
+        };
+        this.catchMice = function(){
+
+        };
+    }
+</script>
+<body>
+    <script>
+        let image = new Image(100, 200, '5M');
+        let cat = new Cat('白色', '5KG', 4);
+        
+        console.log(image instanceof Image);
+        console.log(image.width, image.height, image.size);
+
+        console.log(cat instanceof Cat);
+        console.log(cat.color, cat.age, cat.bodyWeight);
+
+    </script>    
+</body>
+</html>

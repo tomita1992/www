@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>argument</title>
+</head>
+<body>
+    <script>
+        //arguments可以获取参数的信息是一个伪数组arguments
+        function f1()
+        {
+            var sum = 0;
+            for(var i = 0; i < arguments.length; i++)
+            {
+                sum += arguments[i];
+            }
+            return sum;
+        }
+        console.log(f1(10,20,40));
+        
+        
+    </script>
+</body>
+</html>

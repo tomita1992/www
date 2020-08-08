@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创建对象练习</title>
+</head>
+<body>
+    <script>
+        let smallDog = new Object();
+        smallDog.name = '大黄';
+        smallDog.age = 4;
+
+        smallDog.eat = function(){
+            console.log('我要吃大骨头');
+        };
+        smallDog.walk = function(){
+            console.log('走一步摇尾巴');
+        };
+        smallDog.eat();
+        smallDog.walk();
+
+        let phone = new Object();
+        phone.size = 'iphone10';
+        phone.color = '黑色';
+        phone.call = function(){
+            console.log('你好');
+        };
+        
+        var num = 10;
+        // instanceof 可以判断一个变量是否属于某一种类型
+        //结果为false
+        console.log(num instanceof Number);
+        //结果为true
+        console.log(smallDog instanceof Object);
+    </script>
+</body>
+</html>

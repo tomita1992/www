@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字面量的方式创建对象</title>
+</head>
+<body>
+    <script>
+        //初始写法 创建一个空的字面量对象后在外面定义属性与方法
+        var obj = {};
+
+        obj.name = '小白';
+        obj.age = 10;
+        obj.sayHi = function(){
+            console.log('我叫' + this.name);
+        };
+        obj.sayHi();
+
+        //优化写法 床加一个字面量对象的同时定义属性与方法
+        var obj2 = {
+            name:'小明',
+            age: 20,
+            sayHi:function(){
+                console.log('我叫' + this.name);
+            }
+        }
+        obj2.name = '小红';
+        obj2.sayHi();
+    </script>
+</body>
+</html>

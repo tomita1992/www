@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创建对象</title>
+</head>
+<body>
+    <script>
+        //用构造函数创建对象也叫作实例化一个对象
+        var obj = new Object();
+        
+        //添加对象的属性 对象.名字 = 值;
+        obj.name = '小苏';
+        obj.age = 22;
+        obj.sex = '女';
+        
+        //添加对象的方法 对象.名字 = 函数;
+        obj.eat = function(){
+          console.log('我喜欢吃油炸榴莲');  
+        };
+        obj.play = function(){
+            console.log('我喜欢玩飞机模型');
+        };
+        //输出 也叫获取
+        console.log(obj.name);
+        console.log(obj.age);
+        console.log(obj.sex);
+        //方法的调用
+        obj.eat();
+        obj.play();
+    </script>
+</body>
+</html>

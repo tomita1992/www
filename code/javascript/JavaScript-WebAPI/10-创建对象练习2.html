@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创建对象练习 this</title>
+</head>
+<body>
+    <script>
+        let person = new Object();
+        person.name = '小白';
+        person.age = 20;
+        person.sayHi = function(){
+            //在当前对象的方法中是可以访问当前这个对象的属性的值
+            //可以使用this关键字来代替当前对象的名字
+            console.log('你好，我叫' + this.name);
+        }
+        
+        let stu = new Object();
+        stu.name = '小芳';
+        stu.age = 20;
+        stu.study = function(){
+            console.log('我学习，我快乐 我叫' + this.name);
+        }
+
+        person.sayHi();
+        stu.study();
+    </script>
+</body>
+</html>

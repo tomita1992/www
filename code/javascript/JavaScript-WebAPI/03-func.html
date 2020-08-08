@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数练习</title>
+</head>
+<body>
+    <script>
+        //求两个数中的最大值
+        //求或者是得到的函数开头可用get开头
+        function getMax(x, y){
+            return x > y ? x : y; 
+        }
+        var x = 100;
+        var y = 1000;
+
+        var result = getMax(x, y);
+        console.log(result);
+        function num(num){
+            for(var i = 2; i <= num; i++)
+            {
+                if(num == i)
+                {
+                    return true;
+                    
+                }
+                else if(num % i == 0)
+                {
+                    return false;
+                }
+            }
+        }
+        console.log(num(12)? '是质数' : '不是质数');
+    </script>
+</body>
+</html>

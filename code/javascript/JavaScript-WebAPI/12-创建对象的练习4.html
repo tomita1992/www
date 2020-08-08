@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义构造函数创建对象</title>
+</head>
+    <script> 
+
+        //自定义构造函数创建对象
+        //函数和构造函数的区别 就是首字母是不是大写 
+        //如果是创建的是一个普通函数那么目的就是为了调用 如果创建了一个构造函数 目的是为了创建对象
+        function Person(name, age){
+            this.name = name;
+            this.age = age;
+            this.sayHi = function(){
+                console.log('你好我叫' + this.name + '我今年' + this.age + '岁');
+            }
+        }
+
+    </script>
+<body>
+    <script>
+        //用自定义构造函数创建对象时 发生了四件事
+        //1.在内存中开辟空间(申请一块空闲的空间) 存储创建的新的对象
+        //2.把this设置为当前的对象
+        //3.设置对象的属性和方法的值
+        //4.把this这个对象返回
+        var person = new Person('小明', 12);
+        console.log(person.name);
+        console.log(person.age);
+        person.sayHi();
+
+        var person2 = new Person('小红', 14);
+        console.log(person2.name);
+        console.log(person2.age);
+        person2.sayHi();
+
+        function Dog(name, age, sex){
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+        }
+        var dog = new Dog('旺财', 4, '公狗');
+        console.log(dog instanceof Dog);
+    </script>
+</body>
+</html>

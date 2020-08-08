@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象中属性的另一种访问方法</title>
+</head>
+
+<body>
+    <script>
+        function Person(name, age){
+            this.name = name;
+            this.age = age;
+            this.play = function(){
+                console.log('喜欢玩游戏');
+            }
+        }
+        let person = new Person('卡卡西', 20);
+        //访问属性的另一种写法就是用大括号包上 然后用双引号引起来 
+        //这种是以字符串的方式来展示
+        console.log(person["name"]);
+        person["play"]();
+    </script>
+</body>
+
+</html>

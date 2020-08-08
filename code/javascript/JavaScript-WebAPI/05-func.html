@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数作为参数</title>
+</head>
+<body>
+    <script>
+        //fn为回调参数
+        (function(fn){  
+            let srt = '这也可以啊!!!!';
+            fn(srt);  
+        })(f2);
+
+        function f2(srt){
+            console.log(srt);
+        }
+        // f1(f2);
+    </script>
+</body>
+</html>
