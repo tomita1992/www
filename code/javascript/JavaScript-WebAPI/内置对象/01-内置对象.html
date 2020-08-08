@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>内置对象 Math</title>
+</head>
+<body>
+    <script>
+        //js学习三种对象
+        //1.内置对象： js中自带的对象
+        //2.自定义对象
+        //3.浏览器对象
+
+        //生成一个乱数
+        console.log(parseInt(Math.random() * 5) + 1);
+        
+        //创建一个按钮的对象
+        function Button(width, height, color){
+            this.width = width;
+            this.height = height;
+            this.color = color;
+            this.click = function(){
+                console.log('被点了');
+            }
+            this.in = function(){
+                console.log('鼠标咋进来了呢');
+            } 
+        }
+        let btn = new Button(50, 50, 'red');
+        btn.click();
+        btn.in();
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON</title>
+</head>
+<body>
+    <script>
+        //JSON格式的数据也是一个对象一般都是成对的 是键值对
+        let json = {
+            "name":"小明",
+            "age":10,
+            "sex":"男"
+        }
+        //由于对象是无序的 不能用遍历索引数组的方式用for循环遍历
+        //可以通过for循环的in关键字来遍历
+        for(let key in json)
+        {
+            console.log(key + "--------" + json[key]);
+        }
+    </script>
+</body>
+</html>

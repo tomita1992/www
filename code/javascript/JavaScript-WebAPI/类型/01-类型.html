@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据类型</title>
+</head>
+<body>
+    <script>
+        //原始数据类型 number shring boolean undefined nill object
+        //基本类型(简单类型), 值类型：number shring boolean
+        //复杂类型(引用类型)：object
+        //空类型：undefined nill
+
+        //值类型的值在 栈中存储
+        //引用类型的值在 栈和堆中存储
+
+        function Person(name, age){
+            this.name = name;
+            this.age = age;
+        }
+        function Dog(name, age){
+                this.name = name;
+                this.age = age;
+        }
+        
+        function f1(person){
+            person.name = 'ls';
+            person = new Person('小红', 20);   
+            dog = new Dog('大白', 5);        
+        }
+
+        let p = new Person('zs', 18);
+        console.log(p.name);
+        f1(p);
+        console.log(p.name);
+        console.log(dog.name);
+        //错误
+        console.log(person.name);
+    </script>
+</body>
+</html>
