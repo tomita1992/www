@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>字符串案例03</title>
+</head>
+<body>
+    <script>
+        let str = 'whatOareYyouYnoYshaHleiHoHmyHgod';
+        str = str.toLocaleLowerCase();
+        let ch = [];
+        let obj1 = {};
+        let x = 0;
+        let y = 0;
+        let index = 0;
+        let key;
+        //自己所写
+        //首先记录各个字母出现了几次
+        for(let i = 0; i < str.length; i++)
+        {
+            while((index = ch.indexOf(str[i])) === -1)
+            {
+                ch[x] = str[i];
+                obj1[str[i]] = 0;
+                x++;
+            }
+        }
+        //记录每个字母都出现了几次
+        for(x = 0; x < ch.length; x++)
+        {
+            for(let i = 0; i < str.length; i++)
+            {
+                if(str[i] === ch[x])
+                {
+                    obj1[ch[x]]++;
+                    
+                    y++;
+                }
+            }
+            console.log(ch[x] + '-------' + obj1[ch[x]]);
+            y = 0;
+        }
+        //教师案例 把每个字母作为一个键出现次数看做值
+        //准备一个空的对象
+        let obj = {};
+        //遍历查看字母是否在对象中存在
+        for(let i = 0; i < str.length; i++)
+        {
+            //将每个字母作为键看看obj里存不存在
+            let key = str[i];
+            if(obj[key])
+            {
+                //如果有就直接增加次数
+                obj[key]++;
+            }else
+            {
+                //对象中没有这个字母就把字母加到对象中 并且给这个字母一个出现的次数
+                obj[key]=1;
+            }
+        }
+        for(let key in obj)
+        {
+            console.log(key + '------------' + obj[key]);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>字符串练习03</title>
+</head>
+<body>
+    <script>
+        let str = String('如果有一天,我邪恶了,请记住,我曾经纯洁过');
+        //在字符串中指定索引的位置来截取字符串
+        let str1 = str.slice(5, 10);
+        console.log(str1);
+        
+        //将字符串分割为数组 第一个参数为以什么分割 第二个参数为分割的个数
+        let arr = str.split(',', 3);
+        for(let key in arr)
+        {
+            console.log(key + '----------->' + arr[key]);
+        }
+        //返回一个字符串中从指定位置开始的新的字符串 第一个参数是开始的位置 第二个参数是个数
+        let str2 = str.substr(6);
+        console.log(str2);
+        //返回一个字符串中从指定位置开始的新的字符串 第一个参数是开始的位置 第二个参数为截取到什么位置
+        str2 = str.substring(6, 14);
+        console.log(str2);
+        //去除两端的空格
+        let str3 = '  哦， 这真是美好的一天啊  ';
+        str3 = str3.trim();
+        console.log(str3);
+        
+    </script>
+</body>
+</html>

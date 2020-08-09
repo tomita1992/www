@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>字符串练习02</title>
+</head>
+<body>
+    <script>
+        let str = String('我滴个亲娘勒');
+        let str1 = String('哈哈，我来啦');
+        
+        //在一个字符串中查找有没有另一个字符串的存在 还可以指定位置查找 可以传入宽字符 从前往后
+        console.log(str.indexOf('亲娘'));
+        
+        //从后往前找有没有指定字符串 但是索引仍然是从左向右的方向查找
+        console.log(str.lastIndexOf('亲娘'));
+        
+        //用一个字符串替换另一个字符串 或者是函数
+        if(str1.indexOf('哈哈') !== -1)
+        {
+            str1 = str1.replace('哈哈', '嘎嘎');
+        }else
+        {
+            console.log('不存在');
+        }
+        console.log(str1);
+        
+        
+    </script>
+</body>
+</html>

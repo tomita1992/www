@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>需要记住的数组</title>
+</head>
+<body>
+    <script>
+        let arr = [10, 20, 30, 40, 50];
+        
+        //push()方法可以在数组中的最后追加元素 返回值为当前数组的长度
+        arr.push(100);
+        console.log(arr);
+        //pop()方法可以在数组的最后删除一个元素 返回值为删除的那个元素
+        let pop1 = arr.pop();
+        //shift()方法用来删除第一个元素 返回值为删除的那个元素
+        let pop2 = arr.shift();
+        console.log(pop1);
+        console.log(pop2);
+        //在最前面添加一个元素 返回值为当前数组的长度
+        arr.unshift(200);
+        console.log(arr);
+    </script>
+</body>
+</html>

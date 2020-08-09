@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组02</title>
+</head>
+<body>
+    <script>
+        //函数可以作为参数 返回值使用
+        //而every()方法测试数组是否通过了指定函数的测试
+        //这个用来测试的函数叫做callback 也叫回调函数
+        
+        let arr = [100, 200, 300];
+        //a:为元素的值 b:索引的值 c：谁调用了这个方法，那么c就是谁
+        let flag = arr.every(function (a, b, c){
+           console.log(a + '---' + b + '------' + c);
+           console.log(arguments.length);
+           //数组中的每个元素的值都要大于2000的情况最后才返回true 可以用来筛选
+           return a > 90;
+       });
+        //返回值为布尔值 函数作为参数使用 函数中有三个参数 1:为元素的值 2:索引的值 3：谁调用了这个方法，那么c就是谁
+        //如果这个数组中的每个元素的值都符合条件最后才返回的是true
+       console.log(flag);
+       
+       let arr1 = ['小红', '小名', '小白'];
+       //一般情况下用ele, index这两个名字作为参数 第一个是元素 第二个是索引
+       let flag1 = arr1.every(function (ele, index){
+           return (ele.length > 1);
+       });
+       console.log(flag1);
+       
+    </script>
+</body>
+</html>

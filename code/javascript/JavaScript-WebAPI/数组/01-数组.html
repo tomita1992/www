@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建数组</title>
+</head>
+<body>
+    <script>
+        //构造函数方式创建
+        let arr = Array('a', 'b', 'c');
+        
+        //字面量的方式创建
+        let arr1 =['d', 'e', 'f'];
+        
+        //创建一个新的数组
+        let newArr = Array.from(arr);
+        console.log(newArr);
+        
+        //将数组合并 创建一个新的数组 并不会对旧数组产生影响
+        arr = newArr.concat(arr1);
+        console.log(arr);
+        
+        //判断是否为数组可以用instanceof关键字
+        console.log(arr1 instanceof Array);
+        //用静态方法Array.isArray（）可以判断是否为数组
+        console.log(Array.isArray(arr1));
+        
+    </script>
+</body>
+</html>

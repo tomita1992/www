@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Array方法</title>
+</head>
+<body>
+    <script>
+        //js中没有foreach这个语法 但是有一个forEach方法
+        let arr = [14, 22, 5, 2, 33];
+        //forEach（）这个方法同样是传入一个函数 同样也是3个参数
+        //forEach本身属于es5的方法 对旧版本的浏览器有兼容的方法
+        //Polyfill为兼容旧环境的意思 需要将兼容的代码添加到执行forEach之前
+        arr.forEach(function(ele, index){
+            console.log(ele + '-------' + index);
+        });
+        
+        let arr1 = ["小白", "小红", "小绿"];
+        //join()方法可以将数组拼接成一个字符串
+        let str = arr1.join('|');
+        console.log(str);
+        
+        //用reverse()方法可以将数组中元素的排序反转
+        arr.reverse();
+        console.log(arr);
+        
+        //sort()方法可以进行排序 但是不一定稳定 需要传入一个函数
+        //这个回调函数的参数有两个 比较大小用
+        arr.sort(function(a, b){
+            if(a>b)
+            {
+                return 1;
+            }else if(a === b)
+            {
+                return 0;
+            }else
+            {
+                return -1;
+            }
+        });
+        console.log(arr);
+    </script>
+</body>
+</html>

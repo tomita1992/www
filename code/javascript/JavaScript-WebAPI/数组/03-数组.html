@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组03</title>
+</head>
+<body>
+    <script>
+        //用filter()这个方法可以测试数组 以函数作为参数
+        // 调用时会将数组中满足条件元素单独拿出来放到一个新的数组里 组成一个新的数组
+        let arr = [10, 20, 30, 50, 60, 0, 0];
+        //被调用时传三个参数 1.元素的值 2.元素的索引 3.被遍历的数组
+        //需要两个参数或者只需要一个的话剩余的可以不传
+        //实际在使用回调函数的时候 为了判断每个值 一个值就执行一次这个函数
+       let newArr = arr.filter(function(ele){
+           //可以用来排除0等特定的值
+           return (ele !== 0);
+        });
+       //返回一个新的数组
+       console.log(newArr);
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>基本包装类型</title>
+</head>
+<body>
+    <script>
+        //普通变量不能直接调用属性或者方法
+        //对象可以直接调用属性和方法
+        
+        //普通字符串为基本类型 用构造函数创建的为对象
+        //基本类型一旦调用方法就会从普通变量变成对象 这叫做基本包装类型
+        //这个时候普通变量就会变成基本包装类型
+        //基本包装类型有三种 string number boolean
+        let str = 'hello';
+        str = str.replace('ll', 'hh');
+        console.log(str);
+        
+        let num = 10;
+        console.log(num);
+        console.log(num.toString());
+        //基本包装类型在用typeof中也只会显示原来的类型名
+        console.log(typeof num);
+        console.log(typeof str);
+        //基本类型的布尔值一旦成为对象后不论本身是什么 && true 本身的值都会变成true
+        //如果为true && 则会返回对象本身
+        let flag = new Boolean(false);
+        let result =  flag;
+        console.log(result);
+    </script>
+</body>
+</html>

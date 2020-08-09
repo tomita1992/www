@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Array方法</title>
+</head>
+<body>
+    <script>
+        let arr = [10, 20, 30, 40, 50];
+        //slice()方法可以指定数组的元素组成一个新的数组
+        let newArr = arr.slice(3, 4);
+        console.log(newArr);
+        let arr1 = ['小红', '小请', '小闹'];
+        //用splice()方法向数组中指定位置插入元素
+        arr1.splice(2, 0, '大山');
+        console.log(arr1);
+        //用splice()方法向数组中指定位置删除元素
+        arr1.splice(2, 1);
+        console.log(arr1);
+
+    </script>
+</body>
+</html>

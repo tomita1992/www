@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>字符串案例01</title>
+</head>
+<body>
+    <script>
+        let str = '我爱苍老师';
+        //这也可以换成用户输入的方式
+        let key = '苍老师';
+        //先获取要截取的字符串的索引的位置
+        let index = str.indexOf(key);
+        //在这输入变量就可以动态截取
+        str = str.substr(index, 3);
+        console.log(str);
+    </script>
+</body>
+</html>

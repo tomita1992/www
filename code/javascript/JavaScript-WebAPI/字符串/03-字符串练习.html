@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>字符串练习01</title>
+</head>
+<body>
+    <script>
+        let str = new String();
+        let str1 = '你好';
+        let str2 = '我叫王大锤';
+        
+        //从一个字符串中返回指定的字符 超出索引返回空
+        console.log(str.charAt(2));
+        //返回指定的Unicode的字符串 为String的静态方法 参数为ASCII的值
+        let str3 = String.fromCharCode(65, 67, 68);
+        console.log(str3);
+        //字符串拼接
+        let str4 = str.concat(str1, str2);
+        console.log(str4);
+    </script>
+</body>
+</html>

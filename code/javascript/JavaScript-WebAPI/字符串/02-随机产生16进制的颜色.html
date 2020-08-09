@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>随机产生16进制的颜色</title>
+</head>
+<style>
+    #dv
+    {
+        height: 200px;
+        width: 200px;
+        background-color:aqua;
+    }
+</style>
+<script>
+    function Color(){
+        let arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f',]; 
+        this.color = function(){
+            let str_color = '#';
+            for(let i = 0; i < 6; i++)
+            {
+                color_16 = parseInt(Math.random() * 16);
+                str_color += arr[color_16];
+            }
+            return str_color;
+        }
+    }
+    
+    let color_0x = new Color();
+    //页面加载事件
+    window.onload = function(){
+        document.getElementById('dv').style.backgroundColor = color_0x.color();
+    }
+</script>
+<body>
+    <div id = "dv"></div>
+</body>
+</html>

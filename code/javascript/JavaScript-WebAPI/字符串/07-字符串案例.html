@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>字符串案例02</title>
+</head>
+<body>
+    <script>
+        let str = 'hello wod odd ott fbo nhyo';
+        let index = [];
+        let x = 0;
+        //自己所写
+        for(let i = 0; i < str.length; i++)
+        {
+            if(str[i] === 'o')
+            {
+                index[x] = i;
+                x++;
+            }
+        }
+        for(let key in index)
+        {
+            console.log('o的位置在----------->' + index[key]);
+        }
+        //教师案例
+        //要找的字符
+        let key = 'o';
+        //-1就等于没找到 找到的话就返回给o的索引
+        while((index = str.indexOf(key , index)) !== -1)
+        {
+            //把o的位置打印出来
+            console.log('o的位置在----------->' +index);
+            //将要找的值的个数加在索引上
+            index += key.length;
+        }
+    </script>
+</body>
+</html>
