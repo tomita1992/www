@@ -18,7 +18,7 @@ body
 {
     font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;      
 }
-
+/* 设置字体图标 */
 @font-face
 {
     font-family: 'itcast';
@@ -27,7 +27,11 @@ body
     url(../font/MiFie-Web-Font.ttf) format('truetype'), 
     url(../font/MiFie-Web-Font.woff) format('woff');
 }
-
+/* 将字体引入到元素中 */
+[class^="icon-"],[class*=" icon"]
+{
+    font-family: itcast;
+}
 
 /**
  * 头部区域
