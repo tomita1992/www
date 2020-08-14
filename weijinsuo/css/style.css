@@ -32,6 +32,16 @@ body
 {
     font-family: itcast;
 }
+/* 在其他网站上引入字体之后就需要引入字符集 可以直接在网站上查看css代码 */
+.icon-mobilephone::before {
+    content: "\e908";
+    font-size: 13px;
+  }
+  
+  .icon-telephone::before {
+    content: "\e909";
+    font-size: 15px;
+  }
 
 /**
  * 头部区域

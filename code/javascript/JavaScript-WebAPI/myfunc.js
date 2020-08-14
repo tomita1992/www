@@ -1,4 +1,6 @@
-//获取指定格式的时间
+/*
+*     获取指定格式的时间
+* */
 function myTetDate(date){
     //取得现在的日期与时间
     let year = date.getFullYear();
@@ -19,3 +21,11 @@ function myTetDate(date){
     return year + '年' + month + '月' + day + '日 ' + hour + ':' + minute + ':' + scond;
 }
 
+/**
+ * 根据ID返回DOM对象
+ * @param id id属性的值
+ * @returns {Element}
+ */
+function my$(id){
+    return document.getElementById(id);
+};
