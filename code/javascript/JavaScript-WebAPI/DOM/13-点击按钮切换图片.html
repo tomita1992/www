@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点击按钮切换图片</title>
+    <script>
+        function doc(id)
+        {
+            return document.getElementById(id);
+        }
+    </script>
+</head>
+<body>
+    <a id="a" href="logo.ico"><img src="Uninstall.ico" alt="" id="img"></a>
+    
+    <script>
+        doc('img').onclick = function(){
+            this.src = doc('a').href;
+            
+            return false;
+        }
+    </script>
+</body>
+</html>

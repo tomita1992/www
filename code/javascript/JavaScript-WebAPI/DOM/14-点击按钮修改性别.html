@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点击按钮修改性别和兴趣</title>
+</head>
+    <script>
+        function my$(id)
+        {
+            return document.getElementById(id);
+        }
+    </script>
+<body>
+    <div id="div1">
+        <input type="button" value="点我你就变性了" id="btn"/>
+        <input type="radio" name="sex" id="1" value="1"/>男
+        <input type="radio" name="sex" id="2" value="2"/>女
+        <input type="radio" name="sex" id="3" value="3"/>保密
+    </div>
+    <hr>
+    <div div="div2">
+        <input type="button" value="选择兴趣" id="btn2">
+        <input type="checkbox" name="xingqu" value="1" id="ck1">吃饭
+        <input type="checkbox" name="xingqu" value="2" id="ck2">睡觉
+        <input type="checkbox" name="xingqu" value="3" id="ck3">打豆豆
+        <input type="checkbox" name="xingqu" value="4" id="ck4">打篮球
+        <input type="checkbox" name="xingqu" value="5" id="ck5">踢足球
+        <input type="checkbox" name="xingqu" value="6" id="ck6">扔铅球
+    </div>
+    <script>
+        //在表单标签中 如果属性和值只有一个 并且值是这个属性本身
+        //那么在写DOM操作的时候这个属性的值是布尔类型就可以了
+        let index = 1;
+        let radObjs = document.getElementById('div1').getElementsByTagName('input');
+        my$('btn').onclick = function(){
+            if(my$(index.toString()).type !== 'button')
+            {
+                my$(index.toString()).checked = true;
+                index++;
+                if(index >= radObjs.length)
+                {
+                    index = 1;
+                }
+            }
+        }
+    </script>
+    <script>
+        my$('btn2').onclick = function(){
+            my$('ck1').checked = true;
+        };
+    </script>
+</body>
+</html>

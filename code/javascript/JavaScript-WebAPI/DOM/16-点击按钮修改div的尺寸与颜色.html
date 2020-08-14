@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点击按钮修改div的尺寸与颜色</title>
+</head>
+    <style>
+        #dv
+        {
+            width: 200px;
+            height: 100px;
+            background-color:salmon;
+            margin: 0 auto;
+        }
+
+        #dv
+        {
+            margin-top: 10%;
+        }
+    </style>
+<body>
+    <div style="text-align: center">
+        <div id="dv"></div>
+        <input type="button" value="设置样式" id="btn" style="margin-top: 50px;">
+    </div>
+    <script>
+        document.getElementById('btn').onclick = function(){
+            let dvObject = document.getElementById('dv');
+            dvObject.style.width = '400px';
+            dvObject.style.height = '300px';
+            //凡是css中这个属性是多个单词的写法 在js代码中操作DOM的时候 把-干掉 后面的单词首字母大写
+            dvObject.style.backgroundColor = '#ff002f';
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>通过类样式显示或者隐藏div</title>
+</head>
+    <style>
+        #dv
+        {
+            width: 200px;
+            height: 100px;
+            background-color: seagreen;
+            border: 3px solid royalblue;
+        }
+        .cls
+        {
+            display: none;
+        }
+    </style>
+<body>
+    <input type="button" value="隐藏" id="btn">
+    <div id="dv"></div>
+    <script>
+        document.getElementById('btn').onclick = function(){
+            let dvObject = document.getElementById('dv');
+            // dvObject.style.width = '300px';
+            // dvObject.style.height = '300px';
+            // dvObject.style.backgroundColor = 'salmon';
+            // dvObject.style.border = '5px solid yellow';
+            //在js代码中操作DOM的时候设置元素的类样式不用class
+            //在js中class为关键字 直接指定不会认为是类样式的class
+            if(dvObject.className !== 'cls')
+            {
+                dvObject.className = 'cls';
+                this.value = '显示'
+            }
+            else
+            {
+                dvObject.className = '';
+                this.value = '隐藏'
+            }
+        };
+    </script>
+</body>
+</html>

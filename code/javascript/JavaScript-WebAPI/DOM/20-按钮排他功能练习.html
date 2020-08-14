@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>按钮排他功能练习</title>
+</head>
+<body>
+    <input type="button" value="没怀孕">
+    <input type="button" value="没怀孕">
+    <input type="button" value="没怀孕">
+    <input type="button" value="没怀孕">
+    <script>
+        let btnObjs = document.getElementsByTagName('input');
+        for(let value of btnObjs)
+        {
+            value.onclick = function(){
+              for(let i = 0; i < btnObjs.length; i++)
+              {
+                  btnObjs[i].value = '没怀孕';
+              }
+                this.value = '怀孕了';
+            };
+        }
+    </script>
+</body>
+</html>

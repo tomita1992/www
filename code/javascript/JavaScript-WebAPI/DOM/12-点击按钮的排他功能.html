@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>按钮的排他功能</title>
+</head>
+<body>
+    <input type="button" value="没怀孕" id="1">
+    <input type="button" value="没怀孕" id="2">
+    <input type="button" value="没怀孕" id="3">
+    <input type="button" value="没怀孕" id="4">
+    <input type="button" value="没怀孕" id="5">
+    <script>
+        let btnObject = document.getElementsByTagName('input');
+        for(let i = 0; i < btnObject.length; i++)
+        {
+            //给每个按钮注册点击事件
+            btnObject[i].onclick = function()
+            {
+                //首先当按钮被点击的时候将所有按钮的value设为默认值
+                for(let j = 0; j < btnObject.length; j++)
+                {
+                    btnObject[j].value = '没怀孕';
+                }
+                //再在被点击的那一个设置某一个值
+                //由于在页面加载完成时 注册事件的for循环已经结束
+                //在这个时候i为6 所以在这输入btnObject[i]的话就会报错
+                this.value = '怀孕了';
+            }
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01-弹出对话框</title>
+    <script>
+        function f1()
+        {
+            alert('这是一个对话框');
+        }
+    </script>
+</head>
+<body>
+    <a href="#" id="text">哈哈</a>
+    <input type="button" value="显示效果" onclick="f1()">
+    <input type="button" value="又一个按钮" id="btn">
+    <script>
+        let btn = document.getElementById('btn');
+        //不加括号意味着将f1函数中的代码放到了点击事件当中然后点击的时候就会执行这段代码
+        //如果加了括号就意味着只要页面加载完成不论是否点击按钮都会执行f1的内容
+        btn.onclick = function(){
+            alert('这又是一个框');
+            document.getElementById('text').innerText = '被改了';
+        };
+    </script>
+</body>
+</html>

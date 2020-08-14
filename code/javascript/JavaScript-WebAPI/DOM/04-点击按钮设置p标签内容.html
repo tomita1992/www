@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点击按钮设置p标签内容</title>
+</head>
+<body>
+    <p id="text">我没变</p>
+    <input type="button" id="btn" value="点我"/>
+    <script>
+        document.getElementById('btn').onclick = function(){
+            //凡是成对的标签中间的文本内容设置的时候都使用innerText这个属性的方式
+            document.getElementById('text').innerText = '我变了';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点击按钮修改所有文本框的值</title>
+</head>
+<body>
+    <div id="dvi1">
+        <input type="text" value=""/><br/>
+        <input type="text" value=""/><br/>
+        <input type="text" value=""/><br/>
+    </div>
+    <input type="button" value="修改文本框的值" id="btn"/>
+    <div id="dvi2">
+        <input type="text"/><br/>
+        <input type="text"/><br/>
+        <input type="text"/><br/>
+        <input type="button" value="这是第二个" id="btn2">
+    </div>
+
+    <script>
+        document.getElementById('btn').onclick = function(){
+          let inputObjs = document.getElementById('dvi1').getElementsByTagName('input');
+          for(let value of inputObjs)
+          {
+              value.value = '我全给你加上了';
+          }
+        };
+        document.getElementById('btn2').onclick = function(){
+          let inputObject2 = document.getElementById('dvi2').getElementsByTagName('input');
+          for(let value of inputObject2)
+          {
+              if(value.type !== 'button')
+              {
+                  value.value = '我又给你加上了';
+              }
+          }
+        };
+    </script>
+</body>
+</html>

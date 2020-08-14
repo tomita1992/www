@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点击按钮修改图片的属性</title>
+</head>
+<body>
+    <input type="button" value="点我" id="btn">
+    <img src="logo.ico" alt="这是一个图片" title="你撞着我了" id="img">
+    <script>
+        document.getElementById('btn').onclick = function(){
+            let imgObjs = document.getElementsByTagName('img');
+            for(let value of imgObjs)
+            {
+                value.alt = '改完了';
+                value.title = '你咋还撞我呢';
+            }
+        };
+
+    </script>
+</body>
+</html>

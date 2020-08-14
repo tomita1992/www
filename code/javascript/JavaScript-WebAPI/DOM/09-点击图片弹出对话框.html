@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点击图片弹出对话框</title>
+</head>
+<body>
+<img src="logo.ico" alt="我咋就非得加这玩意呢">
+<img src="logo.ico" alt="我咋就非得加这玩意呢">
+<img src="logo.ico" alt="我咋就非得加这玩意呢">
+<img src="logo.ico" alt="我咋就非得加这玩意呢">
+<img src="logo.ico" alt="我咋就非得加这玩意呢">
+    <script>
+        let imgObject = document.getElementsByTagName('img');
+        for(let value of imgObject)
+        {
+            value.onclick = function(){
+                alert('你点我 我就出来');
+            }
+        }
+    </script>
+</body>
+</html>

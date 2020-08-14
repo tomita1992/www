@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点击按钮修改按钮的value属性</title>
+</head>
+<body>
+    <input type="button" value="这是我的第1次" id="btn">
+    <script>
+        let index = 2;
+        let btnObject = document.getElementById('btn');
+        btnObject.onclick = function(){
+            this.value = `这是我的第${index}次`;
+            index++;
+            this.id="btn1";
+        };
+    </script>
+</body>
+</html>

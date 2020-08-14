@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点击按钮设置div隐藏</title>
+    <style>
+        #dv
+        {
+            width: 300px;
+            height: 200px;
+            margin: 0 auto;
+            background-color: salmon;
+        }
+        #dv
+        {
+            margin-top: 10%;
+        }
+    </style>
+</head>
+<body>
+    <div style="text-align: center; margin-top: 50px">
+        <input type="button" value="隐藏" id="btn">
+    </div>
+    <div id="dv">
+        <input type="radio" name="rad1" id="rad1">男
+        <input type="radio" name="rad1" id="rad2">女
+        <input type="radio" name="rad1" id="rad3">保密
+    </div>
+
+    <script>
+        document.getElementById('btn').onclick = function(){
+              let dvObject = document.getElementById('dv');
+              if(dvObject.style.display == 'none')
+              {
+                  dvObject.style.display = 'block'
+                  this.value = '隐藏';
+              }else
+              {
+                  dvObject.style.display = 'none';
+                  this.value = '显示';
+              }
+        };
+    </script>
+    
+</body>
+</html>

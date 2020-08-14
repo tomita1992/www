@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点击按钮选择菜单</title>
+</head>
+    <script src="/JavaScript-WebAPI/myfunc.js"></script>
+<body>
+    <input type="button" value="点我选菜" id="btn">
+    <select name="" id="ss">
+        <option value="1">油炸榴莲</option>
+        <option value="2">爆炒臭豆腐</option>
+        <option value="3" id="op1">红烧班主任</option>
+        <option value="4">清蒸校长</option>
+        <option value="5">咸菜</option>
+    </select>
+    <script>
+        my$('btn').onclick = function(){
+            //点击按钮选择菜
+            my$('op1').selected = true;
+        };
+    </script>
+    
+    <hr>
+    <!-- readonly为只读 如果只有一个属性而且值又是自己的话 那么只写属性就可以 -->
+    <textarea name="tt" id="tt" cols="30" rows="10" readonly>
+        注册用户协议
+        某人问智者，
+        某人：请问如何才能快乐
+        大师：不要和愚人辩论
+    </textarea>
+    <br>
+    <!-- disabled 如果只有一个属性而且值又是自己的话 那么只写属性就可以 -->
+    <input type="button" value="注册" id="btn2">
+    <script>
+        my$('btn2').onclick = function(){
+            //用.value 与 .innerText都可以修改文本的内容 但是推荐 用value 因为用value 用将标签看成是一个表单
+            my$('tt').value = false;
+            // my$('tt').innerText = '哈哈';
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>封装AJAX</title>
+</head>
+<body>
+    <script>
+        /**
+         *                    封装的步骤
+         *  1.写一个相对比较完善的用例 也就是按照原有的方式先写一遍
+         *  2.写一个空的函数 没有形参 然后将刚刚的用例直接作为函数的函数体
+         *  3.根据使用过程中的需求 抽象参数
+         */
+
+        function ajax(method, url){
+            let xhr = new XMLHttpRequest();
+            xhr.open(method, url);
+            xhr.send(null);
+            xhr.onreadystatechange = function(){
+                if(this.readyState !== 4) return;
+                console.log(this.responseText);
+            };
+        };
+        ajax('GET', '/PHP/01.php');
+    </script>
+</body>
+</html>

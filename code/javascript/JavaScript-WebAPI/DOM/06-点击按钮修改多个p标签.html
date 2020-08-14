@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点击按钮修改多个p标签</title>
+</head>
+<body>
+    <div id="div1">
+        <p class="p">第一段</p>
+        <p class="p">第二段</p>
+        <p class="p">第三段</p>
+    </div>
+    
+    <div id="div2">
+        <p>DIV里头的</p>
+        <p>DIV里头的</p>
+        <p>DIV里头的</p>
+    </div>
+    <input type="button" value="点我点我" id="btn">
+    <script>
+        document.getElementById('btn').onclick = function(){
+            //根据标签名字获取标签
+            // let pObjs = document.getElementsByTagName("p");
+            let pObjs = document.getElementById('div1').getElementsByTagName('p');
+            for(let value of pObjs)
+            {
+                value.innerText = '这都是改完的';
+            }
+        };
+        //for in 与 for of 的区别
+        let data = ['apple', 'banana', 'orange'];
+        for(let value in data)
+        {
+            console.log(data[value]);
+        };
+        Array.prototype.hoge = function(){};
+        for(let index of data)
+        {
+            console.log(index);
+        }
+    </script>
+</body>
+</html>
