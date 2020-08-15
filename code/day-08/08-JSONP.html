@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSONP</title>
+</head>
+<body>
+    <script>
+        //定义一个函数可以让客户端使用
+        function myonload(data){
+            console.log(data);
+        }
+        
+    </script>
+    <!-- 用这种方法引入只可以在script内部才可以使用 这样就可以直接坐到跨域请求-->
+    <script src="http://day-07.io/data.js"></script>
+</body>
+</html>

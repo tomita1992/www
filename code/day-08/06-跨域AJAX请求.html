@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>跨域AJAX请求(失败)</title>
+</head>
+<body>
+<script>
+    /**
+     *  当前页面访问地址 http://day-08.io/06-%e8%b7%a8%e5%9f%9fAJAX%e8%af%b7%e6%b1%82.html
+     *  希望被AJAX访问的地址 http://loaclly.uieee.com
+     *
+     *  这两个地址之间协议相同 端口相同 域名不同 所以是两个不同源的地址 ajax请求会失败
+     *  同源策略指的就是不同源地址之间 默认不能相互发送请求
+     *
+     *  如果不同源之间想要相互请求 必须服务端和客户端配合才能完成
+     */
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://day-07.io/php/time.php');
+    xhr.send();
+    xhr.onreadystatechange = function () {
+        if (this.readyState !== 4) return;
+        if (this.status !== 200) return;
+        console.log(this.responseText);
+    };
+</script>
+</body>
+</html>

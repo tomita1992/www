@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>主页面</title>
+  <link rel="stylesheet" href="/lib/bootstrap.css">
+  <link rel="stylesheet" href="/lib/nprogress.css">
+  <style>
+    .loading {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background-color: rgba(0, 0, 0, .6);
+      font-size: 30px;
+    }
+  </style>
+  <script src="/lib/nprogress.js"></script>
+</head>
+<body>
+  <div class="container pt-4">
+    <h1>会员中心</h1>
+    <hr>
+    <div class="row">
+      <aside class="col-md-3">
+        <div class="list-group">
+          <a class="list-group-item list-group-item-action" href="index.html">我的资料</a>
+          <a class="list-group-item list-group-item-action" href="cart.html">我的购物车</a>
+          <a class="list-group-item list-group-item-action" href="orders.html">我的订单</a>
+        </div>
+      </aside>
+      <main id="main" class="col-md-9">
+        <h2>我的个人资料</h2>
+        <hr>
+      </main>
+    </div>
+  </div>
+  <div class="loading">正在玩命加载中...</div>
+  <script src="/lib/jquery.js"></script>
+  <script>
+      //入口函数的作用为 有一个独立的作用域空间 顺便确保页面加载完成执行
+      $(function ($){
+        // //注册一个全局事件 只要有ajax请求就会执行
+        // $(document).ajaxStart(function(){
+        //   //只要有ajax请求发生 就会执行
+        //   $('.loading').fadeIn();
+        //   console.log('注意即将开始请求');
+        // });
+        // $(document).ajaxStop(function (){
+        //   //只要ajax结束就会执行
+        //   console.log('请求结束了');
+        //   $('.loading').fadeOut();
+        // });
+        //用nprogress.js添加进度条样式 只要在事件开始于结束的时候加上
+        //NProgress.start();NProgress.done();
+        $(document)
+                .ajaxStart(function(){
+                  NProgress.start();
+                })
+                .ajaxStop(function (){
+                  NProgress.done();
+                });
+        //给每个a链接注册事件
+        $('.list-group-item').on('click', function(){
+          //获取每个url的地址
+          let url = $(this).attr('href');
+          //在当前页面的main区域中加载另一个页面的main元素
+          $('#main').load(url + ' #main > *');
+          
+          return false;
+        });
+      })
+  </script>
+</body>
+</html>

@@ -12,17 +12,204 @@
          *  2.写一个空的函数 没有形参 然后将刚刚的用例直接作为函数的函数体
          *  3.根据使用过程中的需求 抽象参数
          */
-
-        function ajax(method, url){
+        //第一个版本
+        
+        // function ajax(method, url, params){
+        //     let xhr = new XMLHttpRequest();
+        //     xhr.open(method, url);
+        //      只有为POST请求时才设置请求体
+        //     if(method === 'POST')
+        //     {
+        //         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        //     }
+        //     //如果定义了就穿params 如果没定义就传null
+        //     params = params || null;
+        //     xhr.send(params);
+        //     xhr.onreadystatechange = function(){
+        //         if(this.readyState !== 4) return;
+        //         console.log(this.responseText);
+        //     };
+        // };
+        
+        //第二个版本 考虑url问号参数的处理
+        // function ajax(method, url, params){
+        //
+        //     let data = null;
+        //     let xhr = new XMLHttpRequest();
+        //     //GET请求时的URL处理
+        //     if(method === 'GET')
+        //     {
+        //         //添加问号参数
+        //         url += '?' + params;
+        //     }
+        //     xhr.open(method, url);
+        //     //只有为POST请求时才设置请求体
+        //     if(method === 'POST')
+        //     {
+        //         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        //         //只有POST请求时才设置要传的参数
+        //         data = params;
+        //     }
+        //
+        //     xhr.send(data);
+        //     xhr.onreadystatechange = function(){
+        //         if(this.readyState !== 4) return;
+        //         console.log(this.responseText);
+        //     };
+        // };
+        
+        //第三个版本 考虑POST请求时的请求体格式
+        // function ajax(method, url, params){
+        //
+        //     let data = null;
+        //     let xhr = new XMLHttpRequest();
+        //
+        //     //传传入的对象转成 urlencoded的形式
+        //     if(typeof params === 'object')
+        //     {
+        //         let tempArr = [];
+        //         for(let key in params)
+        //         {
+        //             let item = params[key];
+        //             //将键与值组成一个新的数组
+        //             tempArr.push(key + '=' + item);
+        //             //tempArr => ['key=value1, key=value2']
+        //
+        //             //将数组用&符号链接
+        //             params = tempArr.join('&');
+        //             //params => key=value1&key2=value2
+        //         }
+        //     }
+        //
+        //     //GET请求时的URL处理
+        //     if(method === 'GET')
+        //     {
+        //         //添加问号参数
+        //         url += '?' + params;
+        //     }
+        //     xhr.open(method, url);
+        //     //只有为POST请求时才设置请求体
+        //     if(method === 'POST')
+        //     {
+        //         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        //         //只有POST请求时才设置要传的参数
+        //         data = params;
+        //     }
+        //
+        //     xhr.send(data);
+        //     xhr.onreadystatechange = function(){
+        //         if(this.readyState !== 4) return;
+        //         console.log(this.responseText);
+        //     };
+        // };
+        
+        //第四个版本 注意传入的method的大小写
+        // function ajax(method, url, params){
+        //     //定义一个返回用的变量
+        //     let res = null;
+        //     //将传入的method一律换成大写
+        //     method = method.toUpperCase();
+        //
+        //     let xhr = new XMLHttpRequest();
+        //
+        //     //传传入的对象转成 urlencoded的形式
+        //     if(typeof params === 'object')
+        //     {
+        //         let tempArr = [];
+        //         for(let key in params)
+        //         {
+        //             let item = params[key];
+        //             //将键与值组成一个新的数组
+        //             tempArr.push(key + '=' + item);
+        //             //tempArr => ['key=value1, key=value2']
+        //
+        //             //将数组用&符号链接
+        //             params = tempArr.join('&');
+        //             //params => key=value1&key2=value2
+        //         }
+        //     }
+        //
+        //     //GET请求时的URL处理
+        //     if(method === 'GET')
+        //     {
+        //         //添加问号参数
+        //         url += '?' + params;
+        //     }
+        //     xhr.open(method, url);
+        //     let data = null;
+        //     //只有为POST请求时才设置请求体
+        //     if(method === 'POST')
+        //     {
+        //         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        //         //只有POST请求时才设置要传的参数
+        //         data = params;
+        //     }
+        //
+        //     xhr.send(data);
+        //     xhr.onreadystatechange = function(){
+        //         if(this.readyState !== 4) return;
+        //         //不应该在封装的函数中主观的处理响应结果
+        //         // console.log(this.responseText);
+        //         // 无法通过内部包含的函数中通过return的方式传回去
+        //         // return this.responseText;
+        //         res = this.responseText;
+        //     };
+        //         //由于内部的函数比外部的函数晚执行 所以不能用返回值的方式传回响应体
+        //         return res;
+        // };
+        
+        //第五个版本
+        function ajax(method, url, params){
+            //将传入的method一律换成大写
+            method = method.toUpperCase();
+    
             let xhr = new XMLHttpRequest();
+    
+            //传传入的对象转成 urlencoded的形式
+            if(typeof params === 'object')
+            {
+                let tempArr = [];
+                for(let key in params)
+                {
+                    let item = params[key];
+                    //将键与值组成一个新的数组
+                    tempArr.push(key + '=' + item);
+                    //tempArr => ['key=value1, key=value2']
+            
+                    //将数组用&符号链接
+                    params = tempArr.join('&');
+                    //params => key=value1&key2=value2
+                }
+            }
+    
+            //GET请求时的URL处理
+            if(method === 'GET')
+            {
+                //添加问号参数
+                url += '?' + params;
+            }
             xhr.open(method, url);
-            xhr.send(null);
+            let data = null;
+            //只有为POST请求时才设置请求体
+            if(method === 'POST')
+            {
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                //只有POST请求时才设置要传的参数
+                data = params;
+            }
+    
+            xhr.send(data);
             xhr.onreadystatechange = function(){
                 if(this.readyState !== 4) return;
-                console.log(this.responseText);
             };
         };
-        ajax('GET', '/PHP/01.php');
+        
+        //因为ajax为异步 响应的时候不一定按照请求的顺序来执行
+        ajax('GET', '/PHP/01.php', 'key1=1');
+        ajax('POST', '/PHP/add.php', {key1:'value1', key2:'value2'});
+        ajax('POST', '/PHP/add.php', 'key1=value1&key=value2');
+        ajax('post', '/PHP/add.php', 'key1=value1&key=value2');
+        
     </script>
 </body>
 </html>

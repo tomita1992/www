@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>尝试找到一个可以进行跨域请求的方式</title>
+</head>
+<body>
+    <!-- 用来在页面当中挖一个坑 载入另一个页面
+    <iframe src="/load/index.html" frameborder="0"></iframe>
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597480618711&di=59531269c2f5e7bf11b659b2b9c85c31&imgtype=0&src=http%3A%2F%2Fa1.att.hudong.com%2F62%2F02%2F01300542526392139955025309984.jpg"
+         alt=""> -->
+    <script>
+        /**
+         *  当前页面访问地址 http://day-08.io/06-%e8%b7%a8%e5%9f%9fAJAX%e8%af%b7%e6%b1%82.html
+         *
+         *  img link script iframe 可以发送请求
+         *  表单与a链接也可以发起请求 但是不可以自动发起请求
+         *
+         *  1.img    可以发送不同源地址之间的请求
+         *  2.link
+         */
+            //1.img 可以直接new一个对象 设置src之后马上就可以请求
+            //由于img里面的url会被浏览器默认为图片 会以2进制的方式处理 所以在chrome中看不到响应体中的内容
+            // 但是在火狐中可以看到 请求也是成功的 但是没有办法拿到响应结果
+            // let img = new Image();
+            // img.src = 'http://day-07.io/php/time.php';
+        
+            //2.link 与img不同 DOM必须要append到页面上才可以发送请求
+            //还会报错 MIME 类型 不匹配 也拿不到响应结果
+            // let link = document.createElement('link');
+            // link.rel = 'stylesheet'
+            // link.href = 'http://day-07.io/php/time.php';
+            // document.body.appendChild(link);
+            
+            //3.script
+            let script = document.createElement('script');
+            script.src = 'http://day-07.io/php/time.php';
+            //开始发起请求
+            document.body.appendChild(script);
+            //上面开始发起请求之后马上就会执行下面的这行所以不可以直接执行
+            
+            let obj = {};
+            //可以定义一个函数 相当于回调 但是只是定义 而不是将函数当做参数 所以不是回调
+            function foo(res){
+                console.log(res);
+                obj = res;
+            }
+            
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>func</title>
+</head>
+<body>
+    <script>
+        // function foo(){
+        //     setTimeout(function () {
+        //         return 123;
+        //     }, 1000);
+        // }
+
+        function foo(time){
+            setTimeout(function (){
+                time();
+            }, 1000);
+        };
+        let onTime = function(){
+            console.log(Date.now());
+        }
+        foo(onTime);
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery-ajax</title>
+    <script src="/lib/jquery.js"></script>
+    <style>
+        .loading
+        {
+            display:none;
+            position:fixed;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loading">正在玩命加载中......</div>
+    <input type="button" value="点击" id="btn">
+    <script>
+        //注册一个全局事件 只要有ajax请求就会执行
+        $(document).ajaxStart(function(){
+            //只要有ajax请求发生 就会执行
+            $('.loading').fadeIn();
+            console.log('注意即将开始请求');
+        });
+        $(document).ajaxStop(function (){
+            //只要ajax结束就会执行
+            console.log('请求结束了');
+            $('.loading').fadeOut();
+        });
+        
+        $('#btn').on('click', function(){
+            // $.ajax({
+            //     url:'/PHP/01.php',
+            //     //开始
+            //     beforeSend: function(xhr){
+            //
+            //     },
+            //     //结束
+            //     complete: function(xhr){
+            //
+            //     }
+            // });
+            $.get('/PHP/01.php');
+        });
+    </script>
+</body>
+</html>

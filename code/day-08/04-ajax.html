@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX回调</title>
+</head>
+<body>
+    <script>
+        function ajax(method, url, params, done)
+        {
+            //将method所有的字母换成大写
+            method = method.toUpperCase();
+            let xhr = new XMLHttpRequest();
+            
+            if(typeof params == 'object')
+            {
+                let item = [];
+                for(let key in params)
+                {
+                    let value = params[key];
+                    item.push(key + '=' + value);
+                }
+                params = item.join('&');
+            }
+            
+            if(method === 'GET')
+            {
+                url += '?' + params;
+            }
+            
+            xhr.open(method, url);
+            
+            let date = null;
+            
+            if(method === 'POST')
+            {
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-encoded');
+                date = params;
+            }
+            xhr.send(date);
+            xhr.onreadystatechange = function(){
+                if(this.readyState !== 4) return;
+                    if(this.status !== 200) return;
+                    // console.log(this.responseText);
+                    //由调用者来决定封装者应该做什么
+                    done(this.responseText);
+            };
+        }
+       
+        let onDone = function (res){
+            console.log(res);
+        };
+        ajax('GET', '/PHP/01.php', 'key1=1', onDone);
+
+    </script>
+</body>
+</html>
