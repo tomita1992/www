@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery-JSONP</title>
+</head>
+<body>
+    <script src="/lib/jquery.js"></script>
+    <script>
+        //利用jQuery发送JSONP 虽然名字是ajax但是没有直接的关系
+        $.ajax({
+            url: 'http://day-07.io/server.php',
+            dataType:'jsonp',
+            success: function(res){
+                console.log(res);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSONP</title>
+</head>
+<body>
+    <script>
+        // let funcName = 'function_' + Date.now() + Math.random().toString().substr(2, 5);
+        // let script = document.createElement('script');
+        // script.src = 'http://day-07.io/server.php?callback=' + funcName;
+        // document.body.appendChild(script);
+        //
+        // //如果用相同的函数多次请求的话 后请求的就会将现请求的数据给覆盖掉
+        // //应该给每次请求都设置不同的回调函数
+        // //可以利用window创造全局函数
+        //
+        // window[funcName] = function (data)
+        // {
+        //     console.log('data', data);
+        // }
+        //封装函数
+        function jsonp(url, data, callback){
+            let funcName = 'jsonp_' + Date.now() + Math.random().toString().substr(2, 5);
+            //查看传入的参数是否为对象 如果是就把键值对的结构拆开合成一个数组
+            if(typeof data === 'object')
+            {
+                let item = [];
+                for(let key in data)
+                {
+                    let value = data[key];
+                    item.push(key + '=' + value);
+                }
+                data = item.join('&');
+            }
+            
+            let script = document.createElement('script');
+            script.src = url + '?' + data + '&callback=' + funcName;
+            document.body.appendChild(script);
+    
+            //如果用相同的函数多次请求的话 后请求的就会将现请求的数据给覆盖掉
+            //应该给每次请求都设置不同的回调函数
+            //可以利用window创造全局函数
+    
+            window[funcName] = function (data)
+            {
+                callback(data);
+                //显示之后删除全局函数
+                delete window[funcName];
+                document.body.removeChild(script);
+            }
+        }
+        jsonp('http://day-07.io/server.php', {id: 123}, function(res) {
+            console.log(res);
+        });
+    </script>
+</body>
+</html>
