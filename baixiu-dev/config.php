@@ -5,3 +5,8 @@
     define('DB_USER', 'root');
     define('DC_PASSWORD', 'cui02093920');
     define('DC_NAME', 'baixiu');
+
+    if(!defined('ABSPATH'))
+    {
+        define('ABSPATH', __DIR__ . '/../');
+    }

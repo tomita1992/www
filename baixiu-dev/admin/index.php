@@ -1,3 +1,13 @@
+<?php
+
+session_start();
+if(empty($_SESSION['current_login_user']))
+{
+    //没有当前用户的登录信息 也就意味着没有登录
+    header('Location: /admin/login.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
