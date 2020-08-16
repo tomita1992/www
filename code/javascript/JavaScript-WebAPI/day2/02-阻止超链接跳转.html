@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>阻止超链接跳转</title>
+</head>
+<body>
+    <!-- 阻止超链接的默认跳转 return false 第一种写法 -->
+    <a href="http://www.baidu.com" id="a" onclick="alert('哎呀'); return false;">百度</a>
+    <hr>
+
+    <!-- 第二种写法 -->
+    <script>
+        function f1()
+        {
+            alert("哇塞！！！");
+            //onclick="f1();" 也会跳转 因为false返回给了这个函数
+            return false;
+        }
+        // let aObj = document.getElementById('a');
+        // aObj.onclick = function(){
+        //     this.disabled = true;
+        // };
+    </script>
+    <a href="http://www.baidu.com" onclick="return f1();">百度</a>
+    <hr>
+    <!-- 第三种写法 -->
+    <a href="http://www.baidu.com" id="ak">百度</a>
+    <script>
+        document.getElementById('ak').onclick = function(){
+            alert('哎呀');
+            return false;
+        };
+    </script>
+</body>
+</html>

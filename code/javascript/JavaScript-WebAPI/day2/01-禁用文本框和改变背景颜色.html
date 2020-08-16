@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>禁用文本框和改变背景颜色</title>
+</head>
+<body>
+    <input type="button" value="禁用文本框" id="btn">
+    <input type="text"value="文本框" id="txt">
+    <hr>
+    <input type="button" value="点我换色" id="btn2">
+    <ul id="uu">
+        <li>卡卡西</li>
+        <li>大蛇丸</li>
+        <li>我爱罗</li>
+        <li>鸣人</li>
+        <li>佐助</li>
+    </ul>
+    <script>
+        document.getElementById('bt2').onclick = function(){
+            document.getElementById('uu').style.backgroundColor = "yellow";
+        };
+
+        document.getElementById('btn').onclick = function(){
+            let textObj = document.getElementById('txt');
+            textObj.disabled = true;
+        };
+    </script>
+</body>
+</html>

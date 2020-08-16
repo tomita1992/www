@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>案例根据类样式获取元素</title>
+</head>
+    <style>
+        div
+        {
+            width: 200px;
+            height: 50px;
+            background-color: grey;
+            margin-top: 10px;
+        }
+        .cls
+        {
+            background-color: #cc6600;
+        }
+    </style>
+<body>
+    <p>这是一个p</p>
+    <P class="cls">这是另一个p</P>
+    <span>第一个span</span><br>
+    <span class="cls">第二个span</span><br>
+    <div>这是第一个div</div>
+    <div class="cls">这是第二个div</div>
+    <br>
+    <input type="button" value="点我" id="btn">
+    <script src="common.js"></script>
+    <script>
+        my$('btn').onclick = function(){
+            let objs = document.getElementsByClassName('cls');
+            for(let value of objs)
+            {
+                value.style.backgroundColor = 'red';
+            }
+        };
+    </script>
+</body>
+</html>

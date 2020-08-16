@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>案例列表隔行变色</title>
+</head>
+<body>
+<input type="button" value="隔行变色" id="btn">
+    <ul id="uu">
+        <li>奔驰</li>
+        <li>红旗</li>
+        <li>奥拓</li>
+        <li>丰田</li>
+        <li>拖拉机</li>
+        <li>三驴蹦子</li>
+    </ul>
+<script src="common.js"></script>
+    <script>
+        let liObjs = my$('uu').getElementsByTagName('li');
+        my$('btn').onclick = function(){
+            for(let i = 0; i < liObjs.length; i++)
+            {
+                liObjs[i].style.backgroundColor = (i % 2 === 0)? 'red' : 'yellow';
+            }
+        };
+    </script>
+</body>
+</html>

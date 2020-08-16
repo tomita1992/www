@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>案例列表高亮显示</title>
+    <style>
+        ul
+        {
+            /* 去掉黑点 */
+            list-style-type:none;
+            /* 将鼠标图标改成小手 */
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>金士百</li>
+        <li>雪花</li>
+        <li>百威</li>
+        <li>燕京</li>
+        <li>青岛</li>
+        <li>崂山</li>
+    </ul>
+    <script src="common.js"></script>
+    <script>
+        //鼠标进入和鼠标离开 两个事件
+        let liObjs = document.getElementsByTagName('li');
+        for(let value of liObjs)
+        {
+            //为li注册鼠标进入事件
+            value.onmouseover = function(){
+                this.style.backgroundColor = 'yellow';
+            };
+            
+            //为li注册鼠标离开事件
+            value.onmouseout = function(){
+                this.style.backgroundColor = '';
+            };
+        }
+        
+    </script>
+</body>
+</html>

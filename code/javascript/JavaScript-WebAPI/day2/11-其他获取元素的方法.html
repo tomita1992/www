@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>其他获取元素的方法</title>
+</head>
+<body>
+    <input type="button" value="点我" id="btn">
+    <hr>
+    <p>这是一个p</p>
+    <P class="cls">这是另一个p</P>
+    <span>第一个span</span><br>
+    <span class="cls">第二个span</span><br>
+    <div>这是第一个div</div>
+    <div class="cls">这是第二个div</div>
+    
+    <script src="common.js"></script>
+    <script>
+        //点击按钮弹出对话框
+        document.querySelector("#btn").onclick = function(){
+            let objs = document.querySelectorAll('.cls');
+            for(let value of objs)
+            {
+               value.style.backgroundColor = 'red';
+            }
+        };
+    </script>
+</body>
+</html>
