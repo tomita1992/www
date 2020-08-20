@@ -1,4 +1,4 @@
-package selenium;
+package selenium.step5;
 
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;

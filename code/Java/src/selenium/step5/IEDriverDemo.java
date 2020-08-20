@@ -1,4 +1,4 @@
-package selenium;
+package selenium.step5;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;

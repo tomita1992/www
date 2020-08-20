@@ -96,5 +96,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button class="btn btn-primary btn-block">登 录</button>
     </form>
 </div>
+    <script src="/static/assets/vendors/jquery/jquery.js"></script>
+    <script>
+        //发送AJAX请求
+
+    </script>
 </body>
 </html>

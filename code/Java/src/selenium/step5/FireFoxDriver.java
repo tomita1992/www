@@ -1,4 +1,4 @@
-package selenium;
+package selenium.step5;
 
 //导入WebDriver的包之后需要设置系统的属性
 import org.openqa.selenium.WebDriver;
