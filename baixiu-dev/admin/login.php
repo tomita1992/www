@@ -28,7 +28,7 @@
 
 function db_check($email, $password)
 {
-    $connect = mysqli_connect(DB_HOST, DB_USER, DC_PASSWORD, DC_NAME);
+    $connect = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
     if (!$connect) {
         $GLOBALS['message'] = '连接数据库失败';
         return;
@@ -117,9 +117,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 //如果是PHP的话这个地方会报错 但是js的话只会传一个空的值
                 let value = $(this).val();
+
                 //忽略文本框为空或者是不是一个邮箱
                 if((!value) || (!emailFormat.test(value))) return;
-                console.log(value);
+
+                //用户输入了一个合理的邮箱地址
+                //获取这个邮箱对应的头像地址 展示到上面的img元素上
+                //因为客户端的js无法操作数据库 通过AJAX请求 告诉服务端的某个接口
+                //让这个接口帮助客户端获取头像
+
+                //用jQuery可以直接用get方法发送AJAX请求
+                //第一个参数为请求的地址应该写绝对路径
+                //第二个参数为需要的数据
+                $.get('/admin/api/avatar.php', { email: value }, function(res){
+                    //希望 res => 这个邮箱对应的头像地址
+                    if(!res) return;
+                    {
+                        //展示到上面的img元素上
+                        //fadeOut为淡出 世间大概为0.5秒
+                        $('.avatar').fadeOut(function(){
+                            $(this).on('load', function(){
+                                //图片完全加载过后
+                                $(this).fadeIn()
+                            }).attr('src', res);
+                        })
+                    }
+                })
             });
         });
     </script>
