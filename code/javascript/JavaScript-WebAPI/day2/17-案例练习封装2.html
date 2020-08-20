@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>案例练习封装2</title>
+    <style>
+        div
+        {
+            width: 300px;
+            height: 200px;
+            border: 3px dotted salmon;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="设置" id="btn">
+<input type="button" value="获取" id="btn2">
+    <div id="dv">
+        这是div
+        <p>这是一个p</p>
+    </div>
+
+    <script>
+        document.getElementById('btn').onclick = function(){
+            //设置文本
+            // document.getElementById('dv').innerText = '哈哈';
+            //设置HTML标签的代码 但是innerText只能用来设置文本内容 不能直接设置标签
+            // document.getElementById('dv').innerText = '<p>这是一个p</p>';
+            //innerHTML可以直接设置文本内容
+            // document.getElementById('dv').innerHTML = '哈哈';
+            //设置标签
+            // document.getElementById('dv').innerHTML = '<p>这是一个p</p>';
+        }
+        document.getElementById('btn2').onclick = function () {
+            // console.log(document.getElementById('dv').innerText);
+            console.log(document.getElementById('dv').innerHTML);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>19-自定义属性设置和获取</title>
+    <style>
+        ul
+        {
+            list-style-type: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <ul id="uu">
+        <li>助教的数学成绩</li>
+        <li>班主任的成绩</li>
+        <li>小苏的成绩</li>
+        <li>小明的成绩</li>
+        <li>小花的成绩</li>
+    </ul>
+    <script>
+        //获取所有的li标签 然后为每个标签中动态的添加自定义属性的值
+        let liObjs = document.getElementById('uu').getElementsByTagName('li');
+        let i = 0;
+        for(let obj of liObjs)
+        {
+            //用这种方式添加自定义属性的话 只是在为DOM对象添加属性 不会直接添加在标签中
+            // obj.score = (i + 1) * 10;
+    
+            //DOM中为标签添加属性用setAttribute方法 其中有两个参数 第一个是属性的名字 第二个是属性的值
+            obj.setAttribute('score', (i + 1) * 10);
+            i++;
+            obj.onclick = function(){
+                //添加之后获取也需要用getAttribute
+                alert(this.getAttribute('score'));
+            };
+        }
+    </script>
+</body>
+</html>

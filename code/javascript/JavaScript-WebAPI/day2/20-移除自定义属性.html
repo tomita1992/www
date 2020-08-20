@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>移除自定义属性</title>
+    <style>
+        div
+        {
+            width: 200px;
+            height: 100px;
+            background-color: salmon;
+        }
+        .cls
+        {
+            background-color: greenyellow;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" value="移除自定义属性" id="btn">
+    <div id="dv" score="10" class="cls"></div>
+    <script>
+        //点击按钮移除元素的自定义属性
+        //移除自定义属性用removeAttribute方法
+        document.getElementById('btn').onclick = function(){
+            document.getElementById('dv').removeAttribute('score');
+            //移除类样式可以直接让class的值为空 但是属性依然存在
+            // document.getElementById('dv').className='';
+            document.getElementById('dv').removeAttribute('class');
+        };
+    </script>
+</body>
+</html>

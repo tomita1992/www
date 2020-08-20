@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>切换窗口案例</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        ul {
+            list-style-type: none;
+        }
+        
+        .box {
+            width: 400px;
+            height: 300px;
+            border: 1px solid #ccc;
+            margin: 100px auto;
+            overflow: hidden;
+        }
+        
+        .hd {
+            height: 45px;
+        }
+        
+        .hd span {
+            display: inline-block;
+            width: 90px;
+            background-color: pink;
+            line-height: 45px;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        .hd span.current {
+            background-color: purple;
+        }
+        
+        .bd li {
+            height: 255px;
+            background-color: purple;
+            display: none;
+        }
+        
+        .bd li.current {
+            display: block;
+        }
+    </style>
+
+</head>
+<body>
+<div class="box" id="box">
+    <div class="hd">
+        <span class="current">体育</span>
+        <span>娱乐</span>
+        <span>新闻</span>
+        <span>综合</span>
+    </div>
+    <div class="bd">
+        <ul>
+            <li class="current">我是体育模块</li>
+            <li>我是娱乐模块</li>
+            <li>我是新闻模块</li>
+            <li>我是综合模块</li>
+        </ul>
+    </div>
+</div>
+    <script>
+        //点击上面的字体图标 下面的窗口显示相应的文本内容
+        //可以分成两个步骤 先写上面的操作 排他功能
+        
+        //先获取最外面的div
+        let box = document.getElementById('box');
+        //再获取里面的第一个div
+        let hd = box.getElementsByTagName('div')[0];
+        //获取所有的span标签
+        let spans = hd.getElementsByTagName('span');
+        //再获取里面的第二个div
+        let bd = box.getElementsByTagName('div')[1];
+        //获取所有的li标签
+        let list = bd.getElementsByTagName('li');
+        
+        
+        
+        //遍历的方式添加事件
+        for(let j = 0; j < spans.length; j++)
+        {
+            //在点击事件之前将对应的文本的索引保存在span标签中
+            spans[j].setAttribute('index', j.toString());
+            spans[j].onclick = function(){
+                //1. 所有的类样式全部移除
+                for(let objs of spans)
+                {
+                    objs.removeAttribute('class');
+                }
+                //2. 给当前这个标签添加class
+                this.className = 'current';
+                
+                //span标签被点击的时候获取索引的值
+                // alert(this.getAttribute('index'));
+                let index = this.getAttribute('index');
+                
+                //遍历每个窗口
+                for(let i = 0; i < list.length; i++)
+                {
+                    //先隐藏每个窗口
+                    list[i].removeAttribute('class');
+                }
+                //再显示点击的那个窗口
+                list[index].className = 'current';
+            };
+        }
+    </script>
+</body>
+</html>

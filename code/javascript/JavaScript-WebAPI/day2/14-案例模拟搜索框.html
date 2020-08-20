@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>案例模拟搜索框</title>
+</head>
+    <style>
+        input
+        {
+            color: grey;
+        }
+    </style>
+<body>
+    <input type="text" value="请输入搜索内容" id="txt">
+    <script>
+        //注册获取焦点的事件
+        let txtObj = document.getElementById('txt');
+        txtObj.onfocus = function(){
+            if(this.value === '请输入搜索内容')
+            {
+                this.value = '';
+                this.style.color = 'black';
+            }
+        };
+        //注册失去焦点的事件
+        txtObj.onblur = function(){
+            if(!this.value.length)
+            {
+                this.value = '请输入搜索内容';
+                this.style.color = 'grey';
+            }
+        };
+    </script>
+</body>
+</html>
