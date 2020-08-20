@@ -98,8 +98,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </div>
     <script src="/static/assets/vendors/jquery/jquery.js"></script>
     <script>
-        //发送AJAX请求
+        $(function ($) {
+            //入口函数
+            //1. 单独作用域
+            //2. 确保页面加载过后执行
 
+            //目标：在用户输入自己的邮箱过后 页面上展示这个邮箱对应的头像
+            //实现：时机->邮箱文本框失去焦点而且能够拿到文本框中的邮箱时  事情->获取这个邮箱所对应的头像
+
+            //注册一个失去邮箱文本框中焦点的函数 blur是失去光标的事件
+            $('#email').on('blur', function(){
+                //通过$函数将this（DOM对象）转成了jQuery对象 用jQuery的val方法拿到文本框中的内容
+                // console.log($(this).val());
+
+                //判断文本框中有没有@的正则表达式
+                //js当中可以在斜线之间写正则表达式
+                let emailFormat = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+$/;
+
+                //如果是PHP的话这个地方会报错 但是js的话只会传一个空的值
+                let value = $(this).val();
+                //忽略文本框为空或者是不是一个邮箱
+                if((!value) || (!emailFormat.test(value))) return;
+                console.log(value);
+            });
+        });
     </script>
 </body>
 </html>
